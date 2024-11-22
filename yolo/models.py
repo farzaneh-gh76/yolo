@@ -60,8 +60,12 @@ class shop_prd(models.Model):
     title=models.CharField(max_length=30)
     preprice=models.IntegerField()
     curprice=models.IntegerField()
-    description=models.TextField()
-    img=models.ImageField(upload_to="photo")
+    description=models.CharField(max_length=100 , verbose_name="شرح مختصر محصول")
+    details=models.TextField( null=True, verbose_name="شرح کامل محصول")
+    img=models.ImageField(upload_to="photo", verbose_name="تصویر اصلی ")
+    img1=models.ImageField(upload_to="photo",null=True, verbose_name="تصویر فرعی 1 ")
+    img2=models.ImageField(upload_to="photo",null=True, verbose_name="تصویر فرعی 2 ")
+    img3=models.ImageField(upload_to="photo",null=True, verbose_name="تصویر فرعی 3 ")
     category=models.ForeignKey(category , on_delete=models.CASCADE,related_name="pp")
     date=models.DateField(auto_now=True , verbose_name="تاریخ بارگذاری")
     def __str__(self) -> str:
@@ -91,7 +95,8 @@ class article(models.Model):
     writer=models.CharField(max_length=30 , verbose_name="نویسنده")
     summary=models.CharField(max_length=100 , verbose_name="چکیده" )
     description=models.TextField(verbose_name="متن مقاله")
-    img=models.ImageField(upload_to="photo" , verbose_name="تصویر مقاله")
+    img=models.ImageField(upload_to="photo" , verbose_name="تصویر اصلی مقاله")
+    img1=models.ImageField(upload_to="photo" ,null=True, verbose_name=" تصویر نمایشی مقاله در خانه")
     wimg=models.ImageField(upload_to="photo" , verbose_name="تصویر نویسنده مقاله")
     def __str__(self) -> str:
         return self.title
@@ -131,3 +136,32 @@ class message(models.Model):
     def __str__(self) -> str:
         d=str(self.date)
         return d
+    
+class user_address(models.Model):
+    name=models.CharField(max_length=100, verbose_name="نام تحویل گیرنده")
+    call=models.CharField(max_length=20, verbose_name="شماره تماس")
+    email=models.EmailField(help_text="ایمیل معتبر وارد کنید" , null=True)
+    city=models.CharField(max_length=20, verbose_name=" استان")
+    address=models.CharField(max_length=500, verbose_name="آدرس")
+    zip=models.CharField(max_length=20, verbose_name=" کدپستی")
+    #username=models.ForeignKey(user_account , on_delete=models.CASCADE, related_name="pp")
+    def __str__(self) -> str:
+        return self.name
+    
+class banner(models.Model):
+    img1=models.ImageField(upload_to="photo" , verbose_name="بنر 1" ,null=True)
+    img2=models.ImageField(upload_to="photo" , verbose_name="بنر 2" ,null=True)
+    msg1=models.CharField(max_length=500, verbose_name="توضیحات بنر 1")
+    msg2=models.CharField(max_length=100, verbose_name="  خبر مشکی بنر 2")
+    msg3=models.CharField(max_length=100, verbose_name="  خبر آبی بنر 2")
+    msg4=models.CharField(max_length=500, verbose_name="توضیحات بنر 2")
+
+
+class product_comment(models.Model):
+    name=models.CharField(max_length=50, verbose_name="نام و نام خانوادگی")
+    email=models.EmailField(help_text="ایمیل معتبر وارد کنید" )
+    comment=models.TextField( verbose_name="نظر")  
+    date=models.DateField(auto_now=True , verbose_name="تاریخ بارگذاری")
+    num=models.IntegerField( verbose_name="شماره محصول" )
+    def __str__(self) -> str:
+        return self.name

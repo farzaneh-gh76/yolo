@@ -1,4 +1,5 @@
 {%extends 'yolo/html/layout.html'%}
+{%block 'title'%}متن مقاله {%endblock%}
 {%load static%}
 {%block 'mohtava'%}
 <!-- Main Start -->
@@ -82,7 +83,7 @@
                 {%for itm in msg%}
                 <div class="comment-box">
                   <div class="img-box">
-                    <img src="{%static '/yolo/'%}assets/images/avatar/avatar3.jpg" alt="avatar2" />
+                    <img src="{%static '/yolo/'%}assets/images/avatar/avatar3.png" alt="avatar2" />
                   </div>
                   <div class="avatar-content">
                     <div class="name-box">

@@ -3,22 +3,24 @@
 <html lang="en">
   <!-- Head Start -->
   <head>
+    {%load static%}
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="description" content="oslo" />
     <meta name="keywords" content="oslo" />
     <meta name="author" content="oslo" />
-    <link rel="icon" href="../assets/images/favicon/favicon.png" type="image/x-icon" />
-    <link rel="shortcut icon" href="../assets/images/favicon/favicon.png" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="{%static '/yolo/'%}assets/css/vendors/bootstrap.css" />
+    <link rel="icon" href="{%static '/yolo/'%}assets/images/favicon/favicon.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="{%static '/yolo/'%}assets/images/favicon/favicon.png" type="image/x-icon" />
     <link rel="manifest" href="./manifest.json" />
-    <link rel="icon" href="../assets/images/favicon/favicon.png" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="../assets/images/favicon/favicon.png" />
+    <link rel="icon" href="{%static '/yolo/'%}assets/images/favicon/favicon.png" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="{%static '/yolo/'%}assets/images/favicon/favicon.png" />
     <meta name="theme-color" content="#0f8fac" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Oslo" />
-    <meta name="msapplication-TileImage" content="../assets/images/favicon/favicon.png" />
+    <meta name="msapplication-TileImage" content="{%static '/yolo/'%}assets/images/favicon/favicon.png" />
     <meta name="msapplication-TileColor" content="#FFFFFF" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>یولو | داشبورد کاربر</title>
@@ -26,23 +28,23 @@
     <!-- Google Jost Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="../fonts/fonts.googleapis.com/css2.css" rel="stylesheet" />
+    <link href="{%static '/yolo/'%}fonts/fonts.googleapis.com/css2.css" rel="stylesheet" />
 
     <!-- فونت Google Monsterrat -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="../fonts/fonts.googleapis.com/css2-2.css" rel="stylesheet" />
+    <link href="{%static '/yolo/'%}fonts/fonts.googleapis.com/css2-2.css" rel="stylesheet" />
 
     <!-- Google Leckerli Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="../fonts/fonts.googleapis.com/css2-3.css" rel="stylesheet" />
+    <link href="{%static '/yolo/'%}fonts/fonts.googleapis.com/css2-3.css" rel="stylesheet" />
 
     <!-- Bootstrap Css -->
-    <link id="rtl-link" rel="stylesheet" type="text/css" href="../assets/css/vendors/bootstrap.css" />
+    <link id="rtl-link" rel="stylesheet" type="text/css" href="{%static '/yolo/'%}assets/css/vendors/bootstrap.css" />
 
     <!-- Style Css -->
-    <link id="change-link" rel="stylesheet" type="text/css" href="../assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="{%static '/yolo/'%}assets/css/style.css" />
   </head>
   <!-- Head End -->
 
@@ -59,247 +61,222 @@
   <!-- Overlay -->
   <a href="javascript:void(0)" class="overlay-general overlay-common"></a>
    <!-- Header Start -->
-   <header class="header-common">
-    <!-- Top Header -->
-    <div class="top-header">
-      <p class="marquee"><span> فروش تابستانی آباژورهای مینیمال - 50% تخفیف! اکنون خرید کنید</span></p>
-    </div>
-    <div class="container-lg">
-      <div class="nav-wrap">
-        <!-- Navigation Start -->
-        <nav class="navigation">
-          <div class="nav-section">
-            <div class="header-section">
-              <div class="navbar navbar-expand-xl navbar-light navbar-sticky p-0">
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#primaryMenu" aria-controls="primaryMenu">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-                <a href="index.html" class="logo-link">
-                  <img class="logo logo-dark" src="../assets/images/logos/logo.png" alt="logo" />
-                  <img class="logo logo-light" src="../assets/images/logos/logo-w.png" alt="logo" />
-                </a>
-                <div class="offcanvas offcanvas-collapse order-lg-2" id="primaryMenu">
-                  <div class="offcanvas-header navbar-shadow">
-                    <h5 class="mt-1 mb-0">فهرست</h5>
-                    <button class="btn-close lead" type="button" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                  </div>
+ <header class="header-common">
+  <!-- Top Header -->
+  <div class="top-header">
+    {%for itm in s%}
+    <p class="marquee"><span>{{itm.specialnews}}</span></p>
+    {%endfor%}
+  </div>
+  <div class="container-lg">
+    <div class="nav-wrap">
+      <!-- Navigation Start -->
+      <nav class="navigation">
+        <div class="nav-section">
+          <div class="header-section">
+            <div class="navbar navbar-expand-xl navbar-light navbar-sticky p-0">
+              <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#primaryMenu" aria-controls="primaryMenu">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <a href="/" class="logo-link">
+                {%for itm in i%}
+                <img class="logo logo-dark" src={{itm.img.url}} alt="logo" />
+                <img class="logo logo-light" src={{itm.img.url}} alt="logo" />
+                {%endfor%}  
+              </a>
+              <div class="offcanvas offcanvas-collapse order-lg-2" id="primaryMenu">
+                <div class="offcanvas-header navbar-shadow">
+                  <h5 class="mt-1 mb-0">فهرست</h5>
+                  <button class="btn-close lead" type="button" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
 
-                  <div class="offcanvas-body">
-                    <!-- Menu-->
-                    <ul class="navbar-nav">
-                      <!-- Home -->
-                      <li class="nav-item dropdown dropdown-mega">
-                        <a class="nav-link dropdown-toggle" href="index.html">صفحه اصلی</a>
-                      </li>  
+                <div class="offcanvas-body">
+                  <!-- Menu-->
+                  <ul class="navbar-nav">
+                    <!-- Home -->
+                    <li class="nav-item dropdown dropdown-mega">
+                      <a class="nav-link dropdown-toggle" href="/">صفحه اصلی</a>
+                    </li>  
 
-                      <!-- Shop -->
-                      <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">تنوع محصولات</a>
-                        <div class="dropdown-menu">
-                          <div class="dropdown-column">
-                            <a class="dropdown-item" href="kitchen.html">آشپزخانه</a>
-                            <a class="dropdown-item" href="catering.html">پدیرایی</a>
-                            <a class="dropdown-item" href="lighting.html">نورپردازی</a>
-                            <a class="dropdown-item" href="bathroom.html">حمام</a>
-                            <a class="dropdown-item" href="decoration.html">دکوراسیون</a>
-                            <a class="dropdown-item" href="gift.html">هدیه</a>
-      
-                          </div>
+                    <!-- Shop -->
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">تنوع محصولات</a>
+                      <div class="dropdown-menu">
+                        <div class="dropdown-column">
+                          {%for itm in c%}
+                          <a class="dropdown-item" href="/category/{{itm.id}}">{{itm.name}}</a>
+                          {%endfor%}
                         </div>
-                      </li>
+                      </div>
+                    </li>
 
-                      <!-- onsale -->
-                      <li class="nav-item dropdown dropdown-mega">
-                        <a class="nav-link dropdown-toggle" href="onsale.html">تخفیفات ویژه</a>
-                      </li> 
+                    <!-- onsale -->
+                    <li class="nav-item dropdown dropdown-mega">
+                      <a class="nav-link dropdown-toggle" href="/onsale">تخفیفات ویژه</a>
+                    </li> 
 
 
 
-                      <!--news-->
-                      <li class="nav-item dropdown dropdown-mega">
-                        <a class="nav-link dropdown-toggle" href="blog-grid.html">اخبار</a>
-                      </li> 
+                    <!--news-->
+                    <li class="nav-item dropdown dropdown-mega">
+                      <a class="nav-link dropdown-toggle" href="/blog">وبلاگ</a>
+                    </li> 
 
-                      
-                      <!--about-->
-                      <li class="nav-item dropdown dropdown-mega">
-                        <a class="nav-link dropdown-toggle" href="about-us.html">درباره ما</a>
-                      </li> 
+                    
+                    <!--about-->
+                    <li class="nav-item dropdown dropdown-mega">
+                      <a class="nav-link dropdown-toggle" href="/about">درباره ما</a>
+                    </li> 
 
-                      <!--contact-->
-                      <li class="nav-item dropdown dropdown-mega">
-                        <a class="nav-link dropdown-toggle" href="contact-us.html">ارتباط با ما</a>
-                      </li> 
+                    <!--contact-->
+                    <li class="nav-item dropdown dropdown-mega">
+                      <a class="nav-link dropdown-toggle" href="/contact">ارتباط با ما</a>
+                    </li> 
 
-                    </ul>
-                  </div>
+                  </ul>
                 </div>
               </div>
             </div>
           </div>
-        </nav>
-        <!-- Navigation End -->
+        </div>
+      </nav>
+      <!-- Navigation End -->
 
-        <!-- Menu Right Start  -->
-        <div class="menu-right">
-          <div class="select-menu">
+      <!-- Menu Right Start  -->
+      <div class="menu-right">
+        <div class="select-menu">
+          
+          <div class="dropdown select-dropdown" id="translate">
+            <button id="languageSelected"><span>زبان</span> <i data-feather="chevron-down"></i></button>
+            <ul class="onhover-show-div">
+              <li class="lang">فارسی</li>
+              <li class="lang">انگلیسی</li>
+              <li class="lang">عربی</li>                
+            </ul>
+          </div>
+        </div>
+
+
+        <!-- Icon Menu Start -->
+        <ul class="icon-menu">
+          <li>
+            <a href="/search"><button class="search-button"></button><i data-feather="search"></i></button></a>
             
-            <div class="dropdown select-dropdown" id="translate">
-              <button id="languageSelected"><span>زبان</span> <i data-feather="chevron-down"></i></button>
+          </li>
+
+          <li class="user">
+            <div class="dropdown user-dropdown">
+              <a href="javascript:void(0)"><i data-feather="user"></i></a>
               <ul class="onhover-show-div">
-                <li class="lang">فارسی</li>
-                <li class="lang">انگلیسی</li>
-                <li class="lang">عربی</li>                
+                <li><a href="/login">ورود به سیستم</a></li>
+                <li><a href="/register">ثبت نام</a></li>
               </ul>
             </div>
-          </div>
+          </li>
 
-
-          <!-- Icon Menu Start -->
-          <ul class="icon-menu">
-            <li>
-              <button class="search-button"><i data-feather="search"></i></button>
-              <!-- Search Input Start -->
-              <div class="search-full">
-                <div class="input-group">
-                    <span class="input-group-text">
-                      <i data-feather="search"></i>
-                    </span>
-                  <input type="text" class="form-control search-type" placeholder="اینجا سرچ کن.." />
-                  <span class="input-group-text close-search">
-                      <i data-feather="x"></i>
-                    </span>
+          <li>
+            <div class="dropdown whislist-dropdown">
+              <a href="javascript:void(0)"><i data-feather="heart"></i> <span class="notification-label">0</span></a>
+              <div class="onhover-show-div">
+                <a href="/wishlist"> <img src="{%static '/yolo/'%}assets/icons/svg/box.svg" class="img-fluid" alt="box" /> </a>
+                <div class="content">
+                  <a href="/wishlist">
+                    <h6>فهرست علاقه مندی شما خالی است!!</h6>
+                    <p>بیشتر کاوش کنید و موارد را فهرست کنید.</p>
+                  </a>
                 </div>
-
-                
-              <!-- Search Input End -->
-            </li>
-
-            <li class="user">
-              <div class="dropdown user-dropdown">
-                <a href="javascript:void(0)"><i data-feather="user"></i></a>
-                <ul class="onhover-show-div">
-                  <li><a href="login.html">ورود به سیستم</a></li>
-                  <li><a href="register.html">ثبت نام</a></li>
-                </ul>
               </div>
-            </li>
+            </div>
+          </li>
 
-            <li>
-              <div class="dropdown whislist-dropdown">
-                <a href="javascript:void(0)"><i data-feather="heart"></i> <span class="notification-label">0</span></a>
+          <!-- Cart Menu Start -->
+          <li>
+            <div class="dropdown shopingbag">
+              <a href="javascript:void(0)" class="cart-button"><i data-feather="shopping-bag"></i> <span class="notification-label">3</span></a>
+              <a href="javascript:void(0)" class="overlay-cart overlay-common"></a>
+              <div class="onhover-cart-dropdown">
                 <div class="onhover-show-div">
-                  <a href="wishlist.html"> <img src="../assets/icons/svg/box.svg" class="img-fluid" alt="box" /> </a>
-                  <div class="content">
-                    <a href="wishlist.html">
-                      <h6>فهرست علاقه مندی شما خالی است!!</h6>
-                      <p>بیشتر کاوش کنید و موارد را فهرست کنید.</p>
-                    </a>
+                  <div class="dropdown-header">
+                    <div class="control">
+                      <a href="/cart">سبد خرید</a>
+                      <button class="back-cart"><i data-feather="arrow-right"></i></button>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </li>
 
-            <!-- Cart Menu Start -->
-            <li>
-              <div class="dropdown shopingbag">
-                <a href="javascript:void(0)" class="cart-button"><i data-feather="shopping-bag"></i> <span class="notification-label">3</span></a>
-                <a href="javascript:void(0)" class="overlay-cart overlay-common"></a>
-                <div class="onhover-cart-dropdown">
-                  <div class="onhover-show-div">
-                    <div class="dropdown-header">
-                      <div class="control">
-                        <a href="cart.html">سبد خرید</a>
-                        <button class="back-cart"><i data-feather="arrow-right"></i></button>
+                  <div class="card-wrap custom-scroll">
+                    <!-- Cart Item Start -->
+                    <div class="cart-card media">
+                      <a href="/product/{{itm.id}}"> <img src="{%static '/yolo/'%}assets/images/fashion/product/front/8.jpg" class="img-fluid" alt="product" /> </a>
+                      <div class="media-body">
+                        <a href="/product/{{itm.id}}"> <h6>عروسک مستربین</h6></a>
+                        <span>120000 تومان</span>
+                        <div class="plus-minus">
+                          <i class="sub" data-feather="minus"></i>
+                          <input type="number" value="1" min="1" max="10" />
+                          <i class="add" data-feather="plus"></i>
+                        </div>
                       </div>
+                      <button class="remove-cart"><i data-feather="x"></i></button>
                     </div>
+                    <!-- Cart Item End -->
 
-                    <div class="card-wrap custom-scroll">
-                      <!-- Cart Item Start -->
-                      <div class="cart-card media">
-                        <a href="product.html"> <img src="../assets/images/fashion/product/front/8.jpg" class="img-fluid" alt="product" /> </a>
-                        <div class="media-body">
-                          <a href="product.html"> <h6>عروسک مستربین</h6></a>
-                          <span>120000 تومان</span>
-                          <div class="plus-minus">
-                            <i class="sub" data-feather="minus"></i>
-                            <input type="number" value="1" min="1" max="10" />
-                            <i class="add" data-feather="plus"></i>
-                          </div>
+                    <!-- Cart Item Start -->
+                    <div class="cart-card media">
+                      <a href="/product/{{itm.id}}"> <img src="{%static '/yolo/'%}assets/images/fashion/product/front/9.jpg" class="img-fluid" alt="product" /> </a>
+                      <div class="media-body">
+                        <a href="/product/{{itm.id}}"> <h6>ماگ سالیوان</h6></a>
+                        <span>116000 تومان   </span>
+                        <div class="plus-minus">
+                          <i class="sub" data-feather="minus"></i>
+                          <input type="number" value="1" min="1" max="10" />
+                          <i class="add" data-feather="plus"></i>
                         </div>
-                        <button class="remove-cart"><i data-feather="x"></i></button>
                       </div>
-                      <!-- Cart Item End -->
-
-                      <!-- Cart Item Start -->
-                      <div class="cart-card media">
-                        <a href="product.html"> <img src="../assets/images/fashion/product/front/9.jpg" class="img-fluid" alt="product" /> </a>
-                        <div class="media-body">
-                          <a href="product.html"> <h6>ماگ سالیوان</h6></a>
-                          <span>116000 تومان   </span>
-                          <div class="plus-minus">
-                            <i class="sub" data-feather="minus"></i>
-                            <input type="number" value="1" min="1" max="10" />
-                            <i class="add" data-feather="plus"></i>
-                          </div>
-                        </div>
-                        <button class="remove-cart"><i data-feather="x"></i></button>
-                      </div>
-                      <!-- Cart Item End -->
-
-                      <!-- Cart Item Start -->
-                      <div class="cart-card media">
-                        <a href="product.html"> <img src="../assets/images/fashion/product/front/10.jpg" class="img-fluid" alt="product" /> </a>
-                        <div class="media-body">
-                          <a href="product.html"> <h6>کوسن نقشه جهان</h6></a>
-                          <span>90000 تومان</span>
-                          <div class="plus-minus">
-                            <i class="sub" data-feather="minus"></i>
-                            <input type="number" value="2" min="1" max="10" />
-                            <i class="add" data-feather="plus"></i>
-                          </div>
-                        </div>
-                        <button class="remove-cart"><i data-feather="x"></i></button>
-                      </div>
-                      <!-- Cart Item End -->
+                      <button class="remove-cart"><i data-feather="x"></i></button>
                     </div>
-                    <div class="dropdown-footer">
-                      <div class="freedelevery">
-                        <p class="terms-condition">ارسال رایگان! برای افزودن محصول بیشتر به سبد خرید خود به خرید ادامه دهید و برای سفارش‌های بیش از <strong>500 دلار</strong></p> ارسال رایگان دریافت کنید.
-                        <div class="progress">
-                          <div class="progress-bar" role="progressbar" style="width: 70%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">70%</div>
+                    <!-- Cart Item End -->
+
+                    <!-- Cart Item Start -->
+                    <div class="cart-card media">
+                      <a href="/product/{{itm.id}}"> <img src="{%static '/yolo/'%}assets/images/fashion/product/front/10.jpg" class="img-fluid" alt="product" /> </a>
+                      <div class="media-body">
+                        <a href="/product/{{itm.id}}"> <h6>کوسن نقشه جهان</h6></a>
+                        <span>90000 تومان</span>
+                        <div class="plus-minus">
+                          <i class="sub" data-feather="minus"></i>
+                          <input type="number" value="2" min="1" max="10" />
+                          <i class="add" data-feather="plus"></i>
                         </div>
                       </div>
-                      <div class="total-price">
-                        <span>مجموع</span>
-                        <span>450 دلار</span>
-                      </div>
-
-                      <div class="btn-group block-group">
-                        <a href="cart.html" class="btn-solid">مشاهده سبد خرید</a>
-                        <a href="payment.html" class="btn-outline">تسویه حساب</a>
-                      </div>
+                      <button class="remove-cart"><i data-feather="x"></i></button>
+                    </div>
+                    <!-- Cart Item End -->
+                  </div>
+                  <div class="dropdown-footer">                
+                    <div class="btn-group block-group">
+                      <a href="/cart" class="btn-solid">مشاهده سبد خرید</a>
                     </div>
                   </div>
                 </div>
               </div>
-            </li>
-            <!-- Cart Menu End -->
-          </ul>
-          <!-- Icon Menu End -->
-        </div>
-        <!-- Menu Right End  -->
+            </div>
+          </li>
+          <!-- Cart Menu End -->
+        </ul>
+        <!-- Icon Menu End -->
       </div>
+      <!-- Menu Right End  -->
     </div>
-  </header>
-  <!-- Header End -->
+  </div>
+</header>
+<!-- Header End -->
 
     <!-- Main Start -->
     <main class="main">
       <!-- Breadcrumb Start -->
       <div class="breadcrumb-wrap">
         <div class="banner">
-          <img class="bg-img bg-top" src="../assets/images/inner-page/banner-p.jpg" alt="banner" />
+          <img class="bg-img bg-top" src="{%static '/yolo/'%}assets/images/inner-page/banner-p.jpg" alt="banner" />
 
           <div class="container-lg">
             <div class="breadcrumb-box">
@@ -307,13 +284,13 @@
                 <h1>داشبورد کاربر</h1>
               </div>
               <ol class="breadcrumb">
-                <li><a href="index.html">صفحه اصلی</a></li>
+                <li><a href="/">صفحه اصلی</a></li>
 
                 <li>
                   <a href="javascript:void(0)"><i data-feather="chevron-right"></i></a>
                 </li>
 
-                <li class="current"><a href="user-dashboard.html">داشبورد کاربر</a></li>
+                <li class="current"><a href="#">داشبورد کاربر</a></li>
               </ol>
             </div>
           </div>
@@ -331,7 +308,7 @@
                 <span class="back-side d-lg-none"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></span>
                 <div class="profile-box">
                   <div class="img-box">
-                    <img class="img-fluid" src="../assets/images/avatar/avatar.jpg" alt="user">
+                    <img class="img-fluid" src="{%static '/yolo/'%}assets/images/avatar/avatar3.png" alt="user">
                     <div class="edit-btn">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
                       <input class="updateimg" type="file" name="img">
@@ -358,7 +335,7 @@
                     </button>
                   </li>
                   <li class="nav-item" role="presentation">
-                    <a href="wishlist.html" class="nav-link">
+                    <a href="/wishlist" class="nav-link">
                       لیست علاقه مندیها
                       <span><svg style="transform: rotateY(180deg);" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
                     </a>
@@ -369,12 +346,7 @@
                       <span><svg style="transform: rotateY(180deg);" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
                     </button>
                   </li>
-                  <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="payment-tab" data-bs-toggle="tab" data-bs-target="#payment" type="button" role="tab" aria-controls="payment" aria-selected="false">
-                      کارت ذخیره شده
-                      <span><svg style="transform: rotateY(180deg);" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
-                    </button>
-                  </li>
+                  
                   <li class="nav-item" role="presentation">
                     <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">
                       مشخصات
@@ -399,48 +371,42 @@
                     <div class="title-box3">
                       <h3>فرزانه عزیز، خوش آمدید!</h3>
                       <p>
-                        در اینجا می توانید مشخصات خود را تغییر دهید، سفارش خود را پیگیری کنید، به آدرس و کارت ذخیره شده خود دسترسی داشته باشید و یا تنظیمات حساب کاربری خود را تغییر دهید.                    </p>
+                        در اینجا می توانید مشخصات خود را تغییر دهید، سفارش خود را پیگیری کنید، به آدرس های ذخیره شده خود دسترسی داشته باشید و یا تنظیمات حساب کاربری خود را تغییر دهید.                    </p>
                     </div>
 
                     <div class="row g-0 option-wrap">
                       <div class="col-sm-6 col-xl-4">
                         <a href="javascript:void(0)" data-class="orders" class="tab-box">
-                          <img src="../assets/icons/svg/1.svg" alt="کیف خرید" />
+                          <img src="{%static '/yolo/'%}assets/icons/svg/1.svg" alt="کیف خرید" />
                           <h5>سفارشات</h5>
                           <p>سابقه سفارشات قبلی را ببینید</p>
                         </a>
                       </div>
                       <div class="col-sm-6 col-xl-4">
-                        <a href="wishlist.html" data-class="wishlist" class="tab-box">
-                          <img src="../assets/icons/svg/2.svg" alt="wishlist" />
+                        <a href="/wishlist" data-class="wishlist" class="tab-box">
+                          <img src="{%static '/yolo/'%}assets/icons/svg/2.svg" alt="wishlist" />
                           <h5>علاقمندی ها</h5>
                           <p>موارد دلخواه خود را ذخیره کنید تا بعدا به راحتی آن ها را پیدا کنید.</p>
                         </a>
                       </div>
                       <div class="col-sm-6 col-xl-4">
                         <a href="javascript:void(0)" data-class="savedAddress" class="tab-box">
-                          <img src="../assets/icons/svg/3.svg" alt="address" />
+                          <img src="{%static '/yolo/'%}assets/icons/svg/3.svg" alt="address" />
                           <h5>آدرس ذخیره شده</h5>
                           <p>شما 2 آدرس را برای تحویل ذخیره کردید</p>
                         </a>
                       </div>
-                      <div class="col-sm-6 col-xl-4">
-                        <a href="javascript:void(0)" data-class="payment" class="tab-box">
-                          <img src="../assets/icons/svg/4.svg" alt="payment" />
-                          <h5>پرداخت</h5>
-                          <p>مشخات 3 کارت بانکی جهت پرداخت ذخیره شده.</p>
-                        </a>
-                      </div>
+                      
                       <div class="col-sm-6 col-xl-4">
                         <a href="javascript:void(0)" data-class="profile" class="tab-box">
-                          <img src="../assets/icons/svg/5.svg" alt="profile" />
+                          <img src="{%static '/yolo/'%}assets/icons/svg/5.svg" alt="profile" />
                           <h5>نمایه</h5>
                           <p>اطلاعات کاربری خود را تکمیل یا اصلاح کنید.</p>
                         </a>
                       </div>
                       <div class="col-sm-6 col-xl-4">
                         <a href="javascript:void(0)" data-class="security" class="tab-box">
-                          <img src="../assets/icons/svg/6.svg" alt="security" />
+                          <img src="{%static '/yolo/'%}assets/icons/svg/6.svg" alt="security" />
                           <h5>امنیت</h5>
                           <p>امنیت حساب خود را ارتقا دهید.</p>
                         </a>
@@ -470,7 +436,7 @@
 
                         <div class="order-info">
                           <div class="product-details" data-productDetail="product-detail">
-                            <div class="img-box"><img src="../assets/images/fashion/product/front/8.jpg" alt="product" /></div>
+                            <div class="img-box"><img src="{%static '/yolo/'%}assets/images/fashion/product/front/8.jpg" alt="product" /></div>
                             <div class="product-content">
                               <h5>عروسک مستربین</h5>
                               <p class="truncate-3">
@@ -533,7 +499,7 @@
 
                       <div class="col-12">
                         <div class="product-details">
-                          <div class="img-box"><img src="../assets/images/fashion/product/front/8.jpg" alt="product" /></div>
+                          <div class="img-box"><img src="{%static '/yolo/'%}assets/images/fashion/product/front/8.jpg" alt="product" /></div>
                           <div class="product-content">
                             <h5>عروسک مستربین</h5>
                             <p class="truncate-3">
@@ -577,53 +543,10 @@
                               </li>
                             </ul>
                           </div>
+                          <button class="btn-solid mb-line btn-sm mt-4">دریافت فاکتور <i class="arrow"></i></button>
                         </div>
                       </div>
 
-                      <div class="col-12">
-                        <div class="row gy-3 gy-sm-0 g-3 g-md-4">
-                          <div class="col-sm-6">
-                            <div class="order-data general-details">
-                              <!-- Payment Method Start -->
-                              <div class="payment-method mt-0">
-                                <h5 class="cart-title">روش پرداخت</h5>
-                                <div class="payment-box">
-                                  <img src="../assets/icons/png/1.png" alt="card" />
-                                  <span class="font-sm title-color"> **** **** **** 6502</span>
-                                </div>
-                              </div>
-                              <!-- Payment Method End -->
-
-                              <button class="btn-solid mb-line btn-sm mt-4">دریافت فاکتور <i class="arrow"></i></button>
-                            </div>
-                          </div>
-
-                          <div class="col-sm-6">
-                            <div class="order-data general-details">
-                              <!-- Contact Start -->
-                              <div class="payment-method mt-0">
-                                <h5 class="cart-title">تماس با ما</h5>
-
-                                <div class="payment-box">
-                                  <i data-feather="phone"></i>
-                                  <span class="font-sm title-color">
-                                     <a class="content-color fw-500" href="tel:03136550206">031-36550206</a>
-                                   </span>
-                                </div>
-
-                                
-                                <div class="payment-box mt-3">
-                                  <i data-feather="mail"></i>
-                                  <span class="font-sm title-color">
-                                     <a class="content-color fw-500" href="mailto:someone@example.com">someone@example.com</a>
-                                   </span>
-                                </div>
-                              </div>
-                              <!-- Contact End -->
-                            </div>
-                          </div>
-                        </div>
-                      </div>
 
                       <div class="col-12">
                         <div class="order-data general-details">
@@ -632,7 +555,7 @@
                             <h5 class="cart-title">آدرس سفارش</h5>
                             <div class="address">
                               <h5 class="font-default title-color">فرزانه قندهاری<span class="badges badges-pill badges-theme">خونه</span></h5>
-                              <p class="font-default content-color"><i data-feather="map-pin"></i> ایران،اصفهان، علویجه، بلوار انقلاب، کوی کوثر5، پلاک 3</p>
+                              <p class="font-default content-color"><i data-feather="map-pin"></i> ایران،اصفهان، بلوار انقلاب، کوی نرگس، پلاک 13</p>
                             </div>
                           </div>
                           <!-- Address Section End -->
@@ -666,11 +589,11 @@
                             </div>
                           </div>
                           <div class="address-detail">
-                            <p class="content-color font-default">علویجه، بلوار انقلاب، کوی کوثر 5، پلاک3 </p>
+                            <p class="content-color font-default">اصفهان، بلوار انقلاب، کوی نرگس، پلاک13 </p>
                             <p class="content-color font-default">ایران، اصفهان</p>
     
-                            <span class="content-color font-default mt-1">کدپستی: <span class="title-color font-default fw-500">8551737367</span></span>
-                            <span class="content-color font-default">تلفن همراه: <span class="title-color font-default fw-500">0913-6971401</span></span>                       
+                            <span class="content-color font-default mt-1">کدپستی: <span class="title-color font-default fw-500">1234567890</span></span>
+                            <span class="content-color font-default">تلفن همراه: <span class="title-color font-default fw-500">0913-1234567</span></span>                       
                             <span class="content-color font-default mt-1">نوع پرداخت: <span class="title-color font-default fw-500">اینترنتی</span></span>
                           </div>
                         </div>
@@ -690,12 +613,12 @@
                             </div>
                           </div>
                           <div class="address-detail">
-                            <p class="content-color font-default">دولت آباد،خیابان مطهری، کوچه آیین، مدرسه نمونه دولتی سعدی</p>
+                            <p class="content-color font-default">دولت آباد،خیابان بسیج، کوچه پنجم، مدرسه فخاری</p>
                             <p class="content-color font-default">ایران، اصفهان</p>
     
-                            <span class="content-color font-default mt-1">کدپستی: <span class="title-color font-default fw-500">6882425361</span></span>
-                            <span class="content-color font-default">تلفن همراه: <span class="title-color font-default fw-500"> 0913-6971401</span></span>                        
-                            <span class="content-color font-default mt-1">نوع پرداخت: <span class="title-color font-default fw-500">نقدی هنگام تحویل</span></span>
+                            <span class="content-color font-default mt-1">کدپستی: <span class="title-color font-default fw-500">1234567890</span></span>
+                            <span class="content-color font-default">تلفن همراه: <span class="title-color font-default fw-500"> 0913-1234567</span></span>                        
+                            <span class="content-color font-default mt-1">نوع پرداخت: <span class="title-color font-default fw-500">  اینترنتی</span></span>
                           </div>
                         </div>
                       </div>
@@ -711,121 +634,6 @@
                   </div>
                 </div>
                 <!-- Saved Address Tabs End -->
-
-                <!-- Payment Tabs Start -->
-                <div class="tab-pane" id="payment" role="tabpanel" aria-labelledby="payment-tab">
-                  <div class="payment-tab">
-                    <div class="d-flex align-items-start align-items-sm-center justify-content-between title-box3">
-                      <div>
-                        <h3>کارت ذخیره شده شما</h3>
-                        <p> از اینجا می توانید به راحتی اطلاعات کارت بانکی خود را تغییر دهید</p>
-                      </div>
-                      <button class="btn btn-outline btn-sm white-space-no" data-bs-toggle="modal" data-bs-target="#addNewcard">اضافه کردن کارت</button>
-                    </div>
-
-                    <div class="payment-section">
-                      <div class="row g-3 g-xl-4">
-                        <div class="col-sm-6 col-xl-4">
-                          <div class="payment-card bg-theme-blue border-color-blue">
-                            <div class="bank-info">
-                              <img class="bank" src="../assets/icons/png/bank1.png" alt="bank1" />
-                              <div class="card-type">
-                                <img class="bank-card" src="../assets/icons/png/1.png" alt="card" />
-                              </div>
-                            </div>
-
-                            <div class="card-details">
-                              <span>شماره کارت</span>
-                              <h5>6458 50XX XXXX 0851</h5>
-                            </div>
-
-                            <div class="card-details-wrap">
-                              <div class="card-details">
-                                <span>نام روی کارت</span>
-                                <h5>فرزانه قندهاری</h5>
-                              </div>
-
-                              <div class="text-center card-details">
-                                <span>اعتبار</span>
-                                <h5>XX/XX</h5>
-                              </div>
-                            </div>
-
-                            <div class="btn-box">
-                              <span data-bs-toggle="modal" data-bs-target="#editCard"> <i data-feather="edit"></i></span>
-                              <span data-bs-toggle="modal" data-bs-target="#conformation"><i data-feather="trash"></i></span>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="col-sm-6 col-xl-4">
-                          <div class="payment-card bg-theme-orange border-color-orange">
-                            <div class="bank-info">
-                              <img class="bank" src="../assets/icons/png/bank2.png" alt="bank1" />
-                              <div class="card-type">
-                                <img class="bank-card" src="../assets/icons/png/2.png" alt="card" />
-                              </div>
-                            </div>
-
-                            <div class="card-details">
-                              <span>شماره کارت</span>
-                              <h5>2564 75XX XXXX 3545</h5>
-                            </div>
-
-                            <div class="card-details-wrap">
-                              <div class="card-details">
-                                <span>نام روی کارت</span>
-                                <h5>فرزانه قندهاری</h5>
-                              </div>
-                              <div class="text-center card-details">
-                                <span>اعتبار</span>
-                                <h5>XX/XX</h5>
-                              </div>
-                            </div>
-
-                            <div class="btn-box">
-                              <span data-bs-toggle="modal" data-bs-target="#editCard"><i data-feather="edit"></i></span>
-                              <span data-bs-toggle="modal" data-bs-target="#conformation"><i data-feather="trash"></i></span>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="col-sm-6 col-xl-4">
-                          <div class="payment-card bg-theme-yellow border-color-yellow">
-                            <div class="bank-info">
-                              <img class="bank" src="../assets/icons/png/bank3.png" alt="bank1" />
-                              <div class="card-type">
-                                <img class="bank-card" src="../assets/icons/png/5.png" alt="card" />
-                              </div>
-                            </div>
-
-                            <div class="card-details">
-                              <span>شماره کارت</span>
-                              <h5>8564 34XX XXXX 9564</h5>
-                            </div>
-
-                            <div class="card-details-wrap">
-                              <div class="card-details">
-                                <span>نام روی کارت</span>
-                                <h5>فرزانه قندهاری</h5>
-                              </div>
-                              <div class="text-center card-details">
-                                <span>اعتبار</span>
-                                <h5>XX/XX</h5>
-                              </div>
-                            </div>
-
-                            <div class="btn-box">
-                              <span data-bs-toggle="modal" data-bs-target="#editCard"><i data-feather="edit"> </i></span>
-                              <span data-bs-toggle="modal" data-bs-target="#conformation"><i data-feather="trash"></i></span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- Payment Tabs End -->
 
                 <!-- Profile Tabs Start -->
                 <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -853,7 +661,7 @@
                         <div class="col-sm-4">
                           <div class="input-box">
                             <label for="mobile">موبایل</label>
-                            <input maxlength="10" class="form-control" id="mobile" name="mobile" type="number" value="09136971401" />
+                            <input maxlength="10" class="form-control" id="mobile" name="mobile" type="number" value="09131234567" />
                           </div>
                         </div>
 
@@ -861,9 +669,9 @@
                           <div class="input-box">
                             <label for="gender">جنسیت</label>
                             <select name="gender" id="gender" class="form-control">
-                              <option selected>زن</option>
+                              <option>زن</option>
                               <option>مرد</option>
-                              <option>سایر</option>
+                              
                             </select>
                           </div>
                         </div>
@@ -871,11 +679,8 @@
                         <div class="col-sm-4">
                           <div class="input-box">
                             <label for="location">کشور</label>
-                            <select name="location" id="location" class="form-control">
-                              <option selected>ایران</option>
-                              <option>کشورهای دیگر</option>
-                              
-                            </select>
+                            <input class="form-control" id="location" name="location" type="text" value="ایران" />                           
+                            
                           </div>
                         </div>
 
@@ -890,7 +695,7 @@
                         <div class="col-12">
                           <div class="input-box">
                             <label for="address2">آدرس اصلی</label>
-                            <input class="form-control" id="address2" name="address2" type="text" value="اصفهان، علویجه، بلوار انقلاب، کوی کوثر5، پلاک3" />
+                            <input class="form-control" id="address2" name="address2" type="text" value="اصفهان، بلوار انقلاب، کوی نرگس، پلاک13" />
                           </div>
                         </div>
 
@@ -1070,53 +875,68 @@
 </footer>
 <!-- Document Footer End -->
 
-  <!-- Mobile Menu Footer Start -->
-  <footer class="mobile-menu-footer d-sm-none">
-    <ul>
-      <li>
-        <a href="/">
-          <i data-feather="home"></i>
-          <span>صفحه اصلی</span>
-        </a>
-      </li>
-      <li>
-        <a href="/search" class="search-link">
-          <i data-feather="search"></i>
-          <span>جستجو</span>
-        </a>
-      </li>
-      <li>
-        <a href="/cart">
-          <i data-feather="shopping-bag"></i>
-          <span>سبد خرید</span>
-        </a>
-      </li>
-      <li>
-        <a href="/wishlist">
-          <i data-feather="heart"></i>
-          <span>علاقمندی ها</span>
-        </a>
-      </li>
-      <li>
-        <a href="/user">
-          <i data-feather="user"></i>
-          <span>حساب کاربری</span>
-        </a>
-      </li>
-    </ul>
-  </footer>
-  <!-- Mobile Menu Footer End -->
+<!-- Mobile Menu Footer Start -->
+<footer class="mobile-menu-footer d-sm-none">
+  <ul>
+    <li>
+      <a href="/">
+        <i data-feather="home"></i>
+        <span>صفحه اصلی</span>
+      </a>
+    </li>
+    <li>
+      <a href="/search" class="search-link">
+        <i data-feather="search"></i>
+        <span>جستجو</span>
+      </a>
+    </li>
+    <li>
+      <a href="/cart">
+        <i data-feather="shopping-bag"></i>
+        <span>سبد خرید</span>
+      </a>
+    </li>
+    <li>
+      <a href="/wishlist">
+        <i data-feather="heart"></i>
+        <span>علاقمندی ها</span>
+      </a>
+    </li>
+    <li>
+      <a href="/user">
+        <i data-feather="user"></i>
+        <span>حساب کاربری</span>
+      </a>
+    </li>
+  </ul>
+</footer>
+<!-- Mobile Menu Footer End -->
 
-    <!-- Notification Start -->
-    <div class="notification-wrap addToCart">
-      <div class="notification">
-        <img src="../assets/images/fashion/product/front/1.jpg" alt="product" />
-        <div>
-          <h5>به سبد خرید اضافه شد</h5>
-        </div>
-      </div>
+
+
+<!-- Notification Start -->
+<div class="notification-wrap addToCart">
+  <div class="notification">
+    <img src="{%static '/yolo/'%}assets/images/fashion/product/front/1.jpg" alt="product" />
+    <div>
+      <h5>به سبد خرید اضافه شد</h5>
     </div>
-    <!-- Notification End -->
+  </div>
+</div>
+<!-- Notification End -->
+
+ <!-- Notification Start -->
+<div class="notification-wrap addToWishlist">
+  <div class="notification">
+    <img src="{%static '/yolo/'%}assets/images/fashion/product/front/1.jpg" alt="product" />
+    <div>
+      <h5>به لیست علاقه مندی ها اضافه شد</h5>
+    </div>
+  </div>
+</div>
+<!-- Notification End -->
+
+    
 
     <!-- Add New Address Modal Start -->
     <div class="modal fade addnew-address" id="addNewAddress" tabindex="-1" aria-labelledby="addNewAddressLabel" aria-hidden="true">
@@ -1128,7 +948,8 @@
           </div>
 
           <div class="modal-body full-grid-mobile">
-            <form action="javascript:void(0)" class="custom-form form-pill">
+            <form method="post" class="custom-form form-pill">
+              {%csrf_token%}
               <div class="row g-3 g-md-4">
                 <div class="col-12">
                   <div class="input-box">
@@ -1147,7 +968,7 @@
                 <div class="col-6">
                   <div class="input-box">
                     <label for="mobile">شماره تماس:</label>
-                    <input class="form-control" maxlength="9" type="number" required name="mobile" maxlength="10" id="mobile" />
+                    <input class="form-control" maxlength="11" type="number" required name="mobile" id="mobile" />
                   </div>
                 </div>
 
@@ -1161,60 +982,68 @@
                 <div class="col-sm-4">
                   <div class="input-box">
                     <label for="zip">کد پستی:</label>
-                    <input class="form-control" maxlength="5" type="number" required name="zip" id="zip" />
+                    <input class="form-control" maxlength="10" type="number" required name="zip" id="zip" />
                   </div>
                 </div>
 
                 <div class="col-6 col-sm-4">
                   <div class="input-box">
                     <label for="country">استان:</label>
-                    <select class="form-select form-control" id="country">
+                    <select class="form-select form-control" name="country"  id="country">
                       <option selected disabled value="">انتخاب کنید...</option>
-                      <option>تهران</option>
-                      <option>اصفهان</option>
-                      <option>یزد</option>
-                      <option>شیراز</option>
-                      <option>خوزستان</option>
-                      <option>خراسان رضوی</option>
+                                            
+                      <option>آذربایجان شرقی</option>
                       <option>آذربایجان غربی</option>
-                      <option>کردستان</option>
+                      <option>اردبیل</option>
+                      <option>اصفهان</option>
+                      <option>البرز</option>
+                      <option>ایلام</option>
+                      <option>بوشهر</option>
+                      <option>تهران</option>
+                      <option>چهارمحال و بختیاری</option>
+                      <option>خراسان جنوبی</option>
+                      <option>خراسان رضوی</option>
+                      <option>خراسان شمالی</option>
+                      <option>خوزستان </option>
+                      <option>زنجان </option>
+                      <option>سمنان </option>
+                      <option>سیستان و بلوچستان </option>
+                      <option>فارس </option>
+                      <option>قزوین </option>
                       <option>قم</option>
+                      <option>کردستان</option>
+                      <option>کرمان</option>
+                      <option>کرمانشاه</option>
+                      <option>کهگیلویه و بویراحمد</option>
+                      <option>گلستان</option>
+                      <option>گیلان</option>
+                      <option>لرستان</option>
                       <option>مازندران</option>
+                      <option>مرکزی</option>
+                      <option>هرمزگان</option>
+                      <option>همدان</option>
+                      <option>یزد</option>
+                      
                     </select>
                   </div>
-                </div>
-
-                <div class="col-6 col-sm-4">
-                  <div class="input-box">
-                    <label for="city">نوع پرداخت:</label>
-                    <select class="form-select form-control" id="city">
-                      <option selected disabled value="">انتخاب کنید...</option>
-                      <option>نقدی هنگام تحویل</option>
-                      <option>اینترنتی</option>                      
-                    </select>
+                </div>              
+                <div class="modal-footer">
+                  <div class="btn-box">
+                    <button type="button" class="btn btn-outline rounded-pill" data-bs-dismiss="modal" aria-label="Close">بستن</button>
+                    <button type="submit" class="btn btn-solid line-none rounded-pill">ذخیره آدرس <i class="arrow"></i></button>
                   </div>
                 </div>
-
-                
               </div>
+              
             </form>
-          </div>
-
-          
-
-          <div class="modal-footer">
-            <div class="btn-box">
-              <button type="button" class="btn btn-outline rounded-pill" data-bs-dismiss="modal" aria-label="Close">بستن</button>
-              <button type="button" class="btn btn-solid line-none rounded-pill">ذخیره آدرس <i class="arrow"></i></button>
-            </div>
-          </div>
+          </div>          
         </div>
       </div>
     </div>
     <!-- Add New Address Modal End -->
 
      <!-- Edit Address Modal Start -->
-     <div class="modal fade addnew-address" id="edditAddress" tabindex="-1" aria-labelledby="edditAddressLabel" aria-hidden="true">
+    <div class="modal fade addnew-address" id="edditAddress" tabindex="-1" aria-labelledby="edditAddressLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
@@ -1265,16 +1094,37 @@
                     <label for="country">استان:</label>
                     <select class="form-select form-control" id="country">
                       <option selected disabled value="">انتخاب کنید...</option>
-                      <option>تهران</option>
-                      <option>اصفهان</option>
-                      <option>یزد</option>
-                      <option>شیراز</option>
-                      <option>خوزستان</option>
-                      <option>خراسان رضوی</option>
+                      <option>آذربایجان شرقی</option>
                       <option>آذربایجان غربی</option>
-                      <option>کردستان</option>
+                      <option>اردبیل</option>
+                      <option>اصفهان</option>
+                      <option>البرز</option>
+                      <option>ایلام</option>
+                      <option>بوشهر</option>
+                      <option>تهران</option>
+                      <option>چهارمحال و بختیاری</option>
+                      <option>خراسان جنوبی</option>
+                      <option>خراسان رضوی</option>
+                      <option>خراسان شمالی</option>
+                      <option>خوزستان </option>
+                      <option>زنجان </option>
+                      <option>سمنان </option>
+                      <option>سیستان و بلوچستان </option>
+                      <option>فارس </option>
+                      <option>قزوین </option>
                       <option>قم</option>
+                      <option>کردستان</option>
+                      <option>کرمان</option>
+                      <option>کرمانشاه</option>
+                      <option>کهگیلویه و بویراحمد</option>
+                      <option>گلستان</option>
+                      <option>گیلان</option>
+                      <option>لرستان</option>
                       <option>مازندران</option>
+                      <option>مرکزی</option>
+                      <option>هرمزگان</option>
+                      <option>همدان</option>
+                      <option>یزد</option>
                     </select>
                   </div>
                 </div>
@@ -1306,6 +1156,7 @@
     </div>
     <!-- Edit Address Modal End -->
 
+
      <!-- Action Conformation Start -->
      <div class="modal fade action-conform" id="conformation" tabindex="-1" aria-labelledby="conformationLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
@@ -1326,118 +1177,7 @@
     </div>
     <!-- Action Conformation End -->
 
-    <!-- Add Card Modal Start -->
-    <div class="modal fade addnewcard" id="addNewcard" tabindex="-1" aria-labelledby="addNewcard" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="addNewAddressLabel2">افزودن کارت جدید</h5>
-            <span class="close-modal" data-bs-dismiss="modal"><i data-feather="x"></i></span>
-          </div>
-
-          <div class="modal-body">
-            <form action="javascript:void(0)" class="custom-form form-pill">
-              <div class="row g-3 g-md-4">
-                <div class="col-12">
-                  <div class="input-box">
-                    <label for="name3">نام دارنده کارت</label>
-                    <input class="form-control" type="text" name="name3" id="name3" />
-                  </div>
-                </div>
-
-                <div class="col-12">
-                  <div class="input-box">
-                    <label for="card-number2">شماره کارت</label>
-                    <input maxlength="16" class="form-control" type="number" name="card-number2" id="card-number2" />
-                  </div>
-                </div>
-
-                <div class="col-6">
-                  <div class="input-box">
-                    <label for="ex-date">تاریخ انقضا</label>
-                    <div class="icon-input">
-                      <input class="form-control" type="text" name="ex-date" id="ex-date" />
-                      <i data-feather="calendar"></i>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-6">
-                  <div class="input-box">
-                    <label for="cv">CV</label>
-                    <input maxlength="3" class="form-control" type="number" required name="cv" id="cv" />
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
-
-          <div class="modal-footer">
-            <div class="btn-box">
-              <button type="button" class="btn btn-outline rounded-pill" data-bs-dismiss="modal" aria-label="Close">بستن</button>
-              <button type="button" class="btn btn-solid line-none rounded-pill" data-bs-dismiss="modal" aria-label="Close">اضافه کردن کارت <i class="arrow"></i></button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Add Card Modal End -->
-
-    <!-- Edit Card Modal Start -->
-    <div class="modal fade addnewcard" id="editCard" tabindex="-1" aria-labelledby="editCard" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="addNewAddressLabel3">ویرایش کارت</h5>
-            <span class="close-modal" data-bs-dismiss="modal"><i data-feather="x"></i></span>
-          </div>
-
-          <div class="modal-body">
-            <form action="javascript:void(0)" class="custom-form form-pill">
-              <div class="row g-3 g-md-4">
-                <div class="col-12">
-                  <div class="input-box">
-                    <label for="name4">نام دارنده کارت</label>
-                    <input value="سیاوش تیموری" class="form-control" type="text" name="name4" id="name4" />
-                  </div>
-                </div>
-
-                <div class="col-12">
-                  <div class="input-box">
-                    <label for="card-number">شماره کارت</label>
-                    <input value="6458502535450851" class="form-control" type="number" require name="card-number" id="card-number" />
-                  </div>
-                </div>
-
-                <div class="col-6">
-                  <div class="input-box">
-                    <label for="ex-date2">تاریخ انقضا</label>
-                    <div class="icon-input">
-                      <input value="05/30" class="form-control" type="text" name="ex-date2" id="ex-date2" />
-                      <i data-feather="calendar"></i>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="input-box">
-                    <label for="cv2">CV</label>
-                    <input value="456" class="form-control" type="number" name="cv2" id="cv2" />
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
-
-          <div class="modal-footer">
-            <div class="btn-box">
-              <button type="button" class="btn btn-outline rounded-pill" data-bs-dismiss="modal" aria-label="Close">بستن</button>
-              <button type="button" class="btn btn-solid line-none rounded-pill" data-bs-dismiss="modal" aria-label="Close">ویرایش کارت <i class="arrow"></i></button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Edit Card Modal End -->
+   
 
     <!-- Tap To Top Button Start -->
     <div class="tap-to-top-box hide">
@@ -1453,6 +1193,9 @@
 
     <!-- Header Sticky js  -->
     <script src="{%static '/yolo/'%}assets/js/sticky-header.js"></script>
+
+    <!-- User Dashboard Tab Js -->
+    <script src="{%static '/yolo/'%}assets/js/user-dashboard-tab.js"></script>
 
     <!-- Script Js -->
     <script src="{%static '/yolo/'%}assets/js/script.js"></script>

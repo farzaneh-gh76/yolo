@@ -1,4 +1,5 @@
 {%extends 'yolo/html/layout.html'%}
+{%block 'title'%}مقایسه {%endblock%}
 {%load static%}
 {%block 'mohtava'%}
 <!-- Main Start -->
@@ -14,15 +15,15 @@
             <h1>مقایسه</h1>
           </div>
           <ol class="breadcrumb">
-            <li><a href="index.html">صفحه اصلی</a></li>
+            <li><a href="/">صفحه اصلی</a></li>
             <li>
               <a href="javascript:void(0)"><i data-feather="chevron-right"></i></a>
             </li>
-            <li><a href="shop-left-sidebar.html">خرید</a></li>
+            <li><a href="/shop">خرید</a></li>
             <li>
               <a href="javascript:void(0)"><i data-feather="chevron-right"></i></a>
             </li>
-            <li class="current"><a href="compare.html">مقایسه</a></li>
+            <li class="current"><a href="#">مقایسه</a></li>
           </ol>
         </div>
       </div>
@@ -68,7 +69,7 @@
                         <p class="content-color truncate-2">
                           قابل شست و شو در ماشین لباسشویی
                         </p>
-                        <a class="theme-color" href="product.html">جزئیات بیشتر...</a>
+                        <a class="theme-color" href="/product/{{itm.id}}">جزئیات بیشتر...</a>
 
                         <a href="javascript:void(0)" class="addtocart-btn btn-solid btn-sm">افزودن به سبد خرید<i class="arrow"></i></a>
                       </div>
@@ -93,7 +94,7 @@
                         <p class="content-color truncate-2">
                           قابل شست و شو در ماشین ظرف شویی
                         </p>
-                        <a class="theme-color" href="product.html">جزئیات بیشتر...</a>
+                        <a class="theme-color" href="/product/{{itm.id}}">جزئیات بیشتر...</a>
 
                         <a href="javascript:void(0)" class="addtocart-btn btn-solid btn-sm">افزودن به سبد خرید<i class="arrow"></i></a>
                       </div>
@@ -118,7 +119,7 @@
                         <p class="content-color truncate-2">
                         قابل شست و شو در ماشین لباسشویی
                         </p>
-                        <a class="theme-color" href="product.html">جزئیات بیشتر...</a>
+                        <a class="theme-color" href="/product/{{itm.id}}">جزئیات بیشتر...</a>
 
                         <a href="javascript:void(0)" class="addtocart-btn btn-solid btn-sm">افزودن به سبد خرید<i class="arrow"></i></a>
                       </div>

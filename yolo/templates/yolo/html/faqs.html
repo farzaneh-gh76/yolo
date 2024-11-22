@@ -18,7 +18,7 @@
             <li>
               <a href="javascript:void(0)"><i data-feather="chevron-right"></i></a>
             </li>
-            <li class="current"><a href="/faqs">پرسش‌های متدوال</a></li>
+            <li class="current"><a href="#">پرسش‌های متدوال</a></li>
           </ol>
         </div>
       </div>
@@ -105,6 +105,7 @@
                     </div>
                   </div>
                 </div>
+                            
                 {%endfor%}                         
               </div>
             </div>
@@ -147,7 +148,8 @@
               <p class="mb-0">در صورتی که پس از مطالعه محتوای هر یک از بخش های بالا، هنوز سوالی دارید، می توانید آنها را در اینجا بپرسید. ما سعی می کنیم در اسرع وقت پاسخگو باشیم.</p>
             </div>
 
-            <form action="javascript:void(0)" class="custom-form form-pill">
+            <form method="post" class="custom-form form-pill">
+              {%csrf_token%}
               <div class="row g-4">
                 <div class="col-sm-6">
                   <div class="input-box">
@@ -173,9 +175,11 @@
                 <div class="col-sm-6">
                   <div class="input-box">
                     <label for="phone">شماره تلفن</label>
-                    <input maxlength="9" name="phone" id="phone" type="number" class="form-control" />
+                    <input minlength="11" maxlength="11" name="call" id="number" type="number" class="form-control" />
                   </div>
                 </div>
+
+                <p  class="content-color" style="direction: ltr;text-align: right">شماره تماس  برای ارتباط  و پاسخگویی سریعتر است. لطفا شماره تماس معتبر وارد کنید</p>
 
                 <div class="col-12">
                   <div class="input-box">
@@ -185,7 +189,7 @@
                 </div>
 
                 <div class="col-12 text-end">
-                  <button class="post-button btn btn-solid btn-sm mb-line"> ارسال  <i class="arrow"></i></button>
+                  <button class="post-button btn btn-solid btn-sm mb-line" type="submit"> ارسال  <i class="arrow"></i></button>
                 </div>
               </div>
             </form>

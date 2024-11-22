@@ -7,9 +7,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="description" content="oslo" />
-    <meta name="keywords" content="oslo" />
-    <meta name="author" content="oslo" />
+    <meta name="description" content="yolo" />
+    <meta name="keywords" content="yolo" />
+    <meta name="author" content="yolo" />
     <link rel="stylesheet" type="text/css" href="{%static '/yolo/'%}assets/css/vendors/bootstrap.css" />
     <link rel="icon" href="{%static '/yolo/'%}assets/images/favicon/favicon.png" type="image/x-icon" />
     <link rel="shortcut icon" href="{%static '/yolo/'%}assets/images/favicon/favicon.png" type="image/x-icon" />
@@ -19,7 +19,7 @@
     <meta name="theme-color" content="#0f8fac" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="Oslo" />
+    <meta name="apple-mobile-web-app-title" content="yolo" />
     <meta name="msapplication-TileImage" content="{%static '/yolo/'%}assets/images/favicon/favicon.png" />
     <meta name="msapplication-TileColor" content="#FFFFFF" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -274,6 +274,7 @@
 
 
       <!-- Home Banner Section Start -->
+       {%for itm in b%}
       <section class="home-slider-common ratio_40 p-0">
         <div class="swiper home-slider">
           <div class="swiper-wrapper">
@@ -281,7 +282,7 @@
             <div class="swiper-slide">
               <div class="banner">
                 <div>
-                  <img class="bg-img img-fluid" src="{%static '/yolo/'%}assets/images/fashion/banner/banner1.jpg" alt="banner" />
+                  <img class="bg-img img-fluid" src={{itm.img1.url}} alt="banner" />
                 </div>
                 <!-- Banner Image Left -->
                 <!--<img class="img-fluid banner-left-img" src="{%static '/yolo/'%}assets/images/fashion/slider/banner1-1.png" alt="" />-->
@@ -289,15 +290,18 @@
                 <div class="content-box">
                   <h1 class="heading">
                     <span> خانه رویایی <img class="shape" src="{%static '/yolo/'%}assets/svg/shape.svg" alt="shape" /></span>
-                    خودت را با <strong>یولو</strong>  
+
+                    خودت را با 
+                    
+                    <strong>یولو</strong> 
+
                     بساز
                   </h1>
-                  <p>ما سعی می کنیم بهترین ها را برای مشتریان خود درنظر بگیریم و سعی می کنیم مطمئن شویم که همیشه بهترین خدمات را برای شما ارائه می دهیم.</p>
-                  <a href="shop.html" class="btn-solid">خرید <i class="arrow"></i></a>
+                  <p>{{itm.msg1}}</p>
+                  <a href="/shop" class="btn-solid">خرید <i class="arrow"></i></a>
                 </div>
 
-                <!-- Banner Image Right -->
-                <img class="img-fluid banner-right-img" src="{%static '/yolo/'%}assets/images/fashion/slider/banner1-2.png" alt="" />
+                
 
                 
               </div>
@@ -308,20 +312,22 @@
             <div class="swiper-slide">
               <div class="banner">
                 <div>
-                  <img class="bg-img img-fluid" src="{%static '/yolo/'%}assets/images/fashion/banner/banner1.jpg" alt="banner" />
+                  <img class="bg-img img-fluid" src={{itm.img2.url}} alt="banner" />
                 </div>
-                <!-- Banner Image Left -->
-                <img class="img-fluid banner-left-img" src="{%static '/yolo/'%}assets/images/fashion/slider/banner1-1.png" alt="" />
+               
+                
 
                 <div class="content-box">
                   <h1 class="heading">
-                    جشنواره  <strong> تخفیفات تابستانه</strong>  یولو را ازدست ندید
+                      
+                    {{itm.msg2}}
+                     
                     <br>
-                    <span> 50% تخفیف حراج پایان فصل <img class="shape" src="{%static '/yolo/'%}assets/svg/shape.svg" alt="shape" /></span>
+                    <span>{{itm.msg3}} <img class="shape" src="{%static '/yolo/'%}assets/svg/shape.svg" alt="shape" /></span>
                     
                   </h1>
-                  <p>  دهم لغایت بیست و پنجم شهریور ماه</p>
-                  <a href="shop.html" class="btn-solid">خرید <i class="arrow"></i></a>
+                  <p>  {{itm.msg4}}</p>
+                  <a href="/shop" class="btn-solid">خرید <i class="arrow"></i></a>
                 </div>
 
                 <!-- Banner Image Right -->
@@ -337,6 +343,7 @@
           <div class="swiper-pagination"></div>
         </div>
       </section>
+      {%endfor%}
       <!-- Home Banner Section End -->
 
       <!-- Categories Section Start -->
@@ -603,7 +610,7 @@
               <div class="row g-0 ratio_asos">
                 <div class="col-sm-6">
                   <div class="collection-img">
-                    <img class="bg-img" src={{itm.img.url}} alt="img" />
+                    <img class="bg-img" src={{itm.img1.url}} alt="img" />
                   </div>
                 </div>
 
