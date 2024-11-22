@@ -1,0 +1,158 @@
+{%extends 'yolo/html/layout.html'%}
+{%load static%}
+{%block 'mohtava'%}
+<!-- Main Start -->
+<main class="main">
+  <!-- Breadcrumb Start -->
+  <div class="breadcrumb-wrap">
+    <div class="banner">
+      <img class="bg-img bg-top" src="{%static '/yolo/'%}assets/images/inner-page/banner-p.jpg" alt="banner" />
+
+      <div class="container-lg">
+        <div class="breadcrumb-box">
+          <div class="heading-box">
+            <h1> جزئیات وبلاگ</h1>
+          </div>
+          <ol class="breadcrumb">
+            <li><a href="/">صفحه اصلی</a></li>
+            <li>
+              <a href="javascript:void(0)"><i data-feather="chevron-right"></i></a>
+            </li>
+
+            <li><a href="/blog">وبلاگ</a></li>
+            <li>
+              <a href="javascript:void(0)"><i data-feather="chevron-right"></i></a>
+            </li>
+            <li class="current"><a href="#">جزئیات وبلاگ</a></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Breadcrumb End -->
+
+
+  <!-- Blog Detail Section Start -->
+  <section>
+    <div class="container-lg">
+      <div class="row gy-5 g-lg-3 g-xxl-4">
+        <div class="col-lg-12 order-1 order-lg-1 ratio_36">
+          <div class="blog-wrap">
+            <!-- Blog Section Start -->
+            {%for itm in a%}
+            <div class="blog-box blog-detail">
+              <div class="img-box">
+                <img class="bg-img" src="{{itm.img.url}}" alt="blog" />
+              </div>
+              <div class="content-box">
+                <span><i data-feather="clock"> </i>{{itm.date}}</span>
+                <h5>{{itm.title}}</h5>
+
+                <p>
+                  {{itm.description}}
+                </p>
+
+
+                <div class="share-box">
+                  <div class="sender-box">
+                    <div class="avatar-img">
+                      <img src="{{itm.wimg.url}}" alt="avatar" />
+                    </div>
+                    <div class="sender-details"><h5>{{itm.writer}}</h5></div>
+                  </div>
+                  <div class="action-box">
+                    <span class="like"> <i class="like-btn" data-feather="thumbs-down"></i>125 </span>
+                    <span class="like"> <i class="like-btn" data-feather="thumbs-up"></i>525 </span>
+                    <a href="/blogd/{{itm.id}}#replaySection" class="btn btn-solid btn-sm replay-btn">پاسخ</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {%endfor%}
+            <!-- Blog Section End -->
+
+            <!-- Comment Section Start -->
+            <div class="comments-section round-wrap-content top-space">
+              <div class="title-box4">
+                <h4 class="heading">نظرات<span class="bg-theme-blue"></span></h4>
+              </div>
+            
+
+              <div class="comment-wrapper">
+                {%for itm in msg%}
+                <div class="comment-box">
+                  <div class="img-box">
+                    <img src="{%static '/yolo/'%}assets/images/avatar/avatar3.jpg" alt="avatar2" />
+                  </div>
+                  <div class="avatar-content">
+                    <div class="name-box">
+                      <div class="user-info">
+                        <h5><i data-feather="user"></i> {{itm.name}} </h5>
+                        <span> <i data-feather="clock"></i> {{itm.date}}  </span>
+                      </div>
+                      <div> &nbsp;</div>
+                      <div> &nbsp;</div>
+                      <div> &nbsp;</div>
+                      <div> &nbsp;</div>
+                      <div class="action-box ms-auto">
+                        <span class="like"> <i class="like-btn" data-feather="thumbs-down"></i>16 </span>
+                        <span class="like"> <i class="like-btn" data-feather="thumbs-up"></i>135 </span>
+                        
+                      </div>
+                    </div>
+                    <p> {{itm.comment}}</p>
+                  </div>
+                </div>   
+                <hr style="color: rgb(116, 118, 124);  ">
+                {%endfor%}                 
+              </div>
+             
+            
+            </div>
+            <!-- Comment Section End -->
+
+            <!-- Reply From Section Start -->
+            <div class="replay-form round-wrap-content top-space" id="replaySection">
+              <div class="title-box4">
+                <h4 class="heading">نظر بدهید<span class="bg-theme-blue"></span></h4>
+              </div>
+
+              <form method="get" class="custom-form form-pill">
+                <div class="row g-3 g-sm-4">
+                  <div class="col-sm-6">
+                    <div class="input-box">
+                      <label for="name">نام کامل</label>
+                      <input name="name" id="name" type="text" class="form-control" />
+                    </div>
+                  </div>
+                  <div  class="col-sm-6">
+                    <div class="input-box">
+                      <label for="email">آدرس ایمیل</label>
+                      <input name="email" id="email" type="email" class="form-control" />
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="input-box">
+                      <label for="comment">نظرات</label>
+                      <textarea  name="comment" class="form-control" id="comment" cols="30" rows="5"></textarea>
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <button class="post-button btn btn-solid btn-sm mb-line" type="submit"> ارسال نظر <i class="arrow"></i></button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!-- Reply From Section End -->
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+  <!-- Blog Detail Section End -->
+</main>
+<!-- Main End -->
+
+{%endblock%}

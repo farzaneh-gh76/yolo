@@ -1,0 +1,202 @@
+{%extends 'yolo/html/layout.html'%}
+{%load static%}
+{%block 'mohtava'%}
+<!-- Main Start -->
+<main class="main">
+  <!-- Breadcrumb Start -->
+  <div class="breadcrumb-wrap">
+    <div class="banner">
+      <img class="bg-img bg-top" src="{%static '/yolo/'%}assets/images/inner-page/banner-p.jpg" alt="banner" />
+
+      <div class="container-lg">
+        <div class="breadcrumb-box">
+          <div class="heading-box">
+            <h1>سبد خرید</h1>
+          </div>
+          <ol class="breadcrumb">
+            <li><a href="/">صفحه اصلی</a></li>
+            <li>
+              <a href="javascript:void(0)"><i data-feather="chevron-right"></i></a>
+            </li>
+            <li><a href="/shop">خرید</a></li>
+            <li>
+              <a href="javascript:void(0)"><i data-feather="chevron-right"></i></a>
+            </li>
+            <li class="current"><a href="/cart">سبد خرید</a></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Breadcrumb End -->
+
+  <!-- Cart Section Start -->
+  <section class="section-b-space card-page">
+    <div class="container-lg">
+      <div class="row g-3 g-md-4 cart">
+        <div class="col-md-7 col-lg-8">
+          <div class="cart-wrap">
+            <div class="items-list">
+              <table class="table cart-table m-md-0">
+                <thead>
+                  <tr>
+                    <th class="d-none d-sm-table-cell">محصول</th>
+                    <th class="d-none d-sm-table-cell">قیمت</th>
+                    <th class="d-none d-lg-table-cell">تعداد</th>
+                    <th class="d-none d-xl-table-cell">جمع</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="product-detail">
+                        <img class="pr-img" src="{%static '/yolo/'%}assets/images/fashion/product/front/8.jpg" alt="image" />
+                        <div class="details">
+                          <h4 class="title-color font-default2"  >  <a href="/product">عروسک مستربین</a> </h4>
+                          <span class="sold-by">دسته بندی: <span>هدیه</span> </span>
+                          <span class="size gap-2 d-flex">اندازه: <span>M</span> </span>
+                          <span class="size gap-2 d-flex d-sm-none">قیمت: <span>120000 تومان</span> </span>
+                          <div class="plus-minus mt-2 d-inline-flex d-lg-none">
+                            <i class="sub" data-feather="minus"></i>
+                            <input type="number" value="1" min="1" max="10" />
+                            <i class="add" data-feather="plus"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+
+                    <td class="price d-none d-sm-table-cell">120000تومان</td>
+                    <td class="d-none d-lg-table-cell">
+                      <div class="plus-minus">
+                        <i class="sub" data-feather="minus"></i>
+                        <input type="number" value="1" min="1" max="10" />
+                        <i class="add" data-feather="plus"></i>
+                      </div>
+                    </td>
+                    <td class="total d-none d-xl-table-cell">120000تومان</td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div class="product-detail">
+                        <img class="pr-img" src="{%static '/yolo/'%}assets/images/fashion/product/front/9.jpg" alt="image" />
+                        <div class="details">
+                          <h4 class="title-color font-default2"><a href="/product">ماگ سالیوان</a></h4>
+                          <span class="sold-by">دسته بندی: <span>هدیه</span> </span>
+                          <span class="size gap-2 d-flex">اندازه: <span>--</span> </span>
+                          <span class="size gap-2 d-flex d-sm-none">قیمت: <span>116000 تومان</span> </span>
+                          <div class="plus-minus mt-2 d-inline-flex d-lg-none">
+                            <i class="sub" data-feather="minus"></i>
+                            <input type="number" value="1" min="1" max="10" />
+                            <i class="add" data-feather="plus"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+
+                    <td class="price d-none d-sm-table-cell">116000تومان</td>
+                    <td class="d-none d-lg-table-cell">
+                      <div class="plus-minus">
+                        <i class="sub" data-feather="minus"></i>
+                        <input type="number" value="1" min="1" max="10" />
+                        <i class="add" data-feather="plus"></i>
+                      </div>
+                    </td>
+                    <td class="total d-none d-xl-table-cell">116000تومان</td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div class="product-detail">
+                        <img class="pr-img" src="{%static '/yolo/'%}assets/images/fashion/product/front/10.jpg" alt="image" />
+                        <div class="details">
+                          <h4 class="title-color font-default2"><a href="/product">کوسن نقشه جهان</a></h4>
+                          <span class="sold-by">دسته بندی: <span>دکوراسیون</span> </span>
+                          <span class="size gap-2 d-flex">اندازه: <span>Sm</span> </span>
+                          <span class="size gap-2 d-flex d-sm-none">قیمت: <span>90000 تومان</span> </span>
+                          <div class="plus-minus mt-2 d-inline-flex d-lg-none">
+                            <i class="sub" data-feather="minus"></i>
+                            <input type="number" value="1" min="1" max="10" />
+                            <i class="add" data-feather="plus"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="price d-none d-sm-table-cell">90000تومان</td>
+                    <td class="d-none d-lg-table-cell">
+                      <div class="plus-minus">
+                        <i class="sub" data-feather="minus"></i>
+                        <input type="number" value="1" min="1" max="10" />
+                        <i class="add" data-feather="plus"></i>
+                      </div>
+                    </td>
+                    <td class="total d-none d-xl-table-cell">90000 تومان</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-5 col-lg-4">
+          <div class="summery-wrap">
+            <div class="coupon-box">
+              <h5 class="cart-title">کد تخفیف</h5>
+              <div class="text-wrap">
+                <input required type="email" class="form-control" placeholder="کد را وارد کنید" />
+                <a href="javascript:void(0)" class="btn btn-outline btn-sm">اعمال</a>
+              </div>
+
+              <p class="content-color font-md mb-0">در صورتی که در خریدهای پیشین کد تخفیف دریافت کرده اید، آن را در کادر بالا وارد کنید.</p>
+            </div>
+            <div class="cart-wrap grand-total-wrap">
+              <div>
+                <div class="order-summery-box">
+                  <h5 class="cart-title">جزئیات قیمت (3 مورد)</h5>
+                  <ul class="order-summery">
+                    <li>
+                      <span>مبلغ کل</span>
+                      <span>220000 تومان</span>
+                    </li>
+
+                    <li>
+                      <span>سود شما از این خرید</span>
+                      <span class="theme-color">-20000 تومان</span>
+                    </li>
+
+                    <li>
+                      <span>کد تخفیف</span>
+                      <a href="javascript:void(0)" class="font-danger">اعمال نشده</a>
+                    </li>
+
+                    <li>
+                      <span>هزینه ارسال</span>
+                      <span>15000 تومان</span>
+                    </li>
+
+                    <li class="pb-0">
+                      <span>قابل پرداخت</span>
+                      <span>215000 تومان</span>
+                    </li>
+                  </ul>
+                  <div class="row g-3 mt-2">
+                    <div class="col-6 col-md-12">
+                      <a href="/address" class="btn-solid checkout-btn">تسویه حساب <i class="arrow"></i></a>
+                    </div>
+                    <div class="col-6 col-md-12">
+                      <a href="/shop" class="btn-outline w-100 justify-content-center checkout-btn"> بازگشت به فروشگاه </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Cart Section End -->
+</main>
+<!-- Main End -->
+{%endblock%}

@@ -1,0 +1,30 @@
+{%extends 'yolo/html/layout.html'%}
+{%block 'tagpage'%}یولو|خطای 404 {%endblock%}
+{%block 'titlepage'%}خطای 404 {%endblock%}
+{%block 'pathpage'%}
+<li class="current"><a href="404.html">خطای 404</a></li>
+{%endblock%}
+
+{%block 'content'%}
+<section class="page-not-found">
+    <div class="container">
+      <div class="row gx-md-2 gx-0 gy-md-0 gy-3">
+        <div class="col-md-8 m-auto">
+          <div class="page-image">
+            <img src="{%static '/yolo/'%}assets/images/inner-page/404.svg" class="img-fluid blur-up lazyload" alt="" />
+          </div>
+        </div>
+
+        <div class="col-md-8 mx-auto mt-md-5 mt-3">
+          <div class="page-container pass-forgot">
+            <div>
+              <h2>صفحه یافت نشد</h2>
+              <p class="font-md">صفحه مورد نظر شما وجود ندارد یا خطای دیگری رخ داده است. به عقب برگردید، یا برای انتخاب یک مسیر جدید به صفحه اصلی بروید.</p>
+              <a href="index.html" class="btn-solid mb-line">برگشت به صفحه اصلی <i class="arrow"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{%endblock%}

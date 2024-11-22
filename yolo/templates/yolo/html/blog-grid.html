@@ -1,0 +1,85 @@
+{%extends 'yolo/html/layout.html'%}
+{%load static%}
+{%block 'mohtava'%}
+    <!-- Main Start -->
+    <main class="main">
+      <!-- Breadcrumb Start -->
+      <div class="breadcrumb-wrap">
+        <div class="banner">
+          <img class="bg-img bg-top" src="{%static '/yolo/'%}assets/images/inner-page/banner-p.jpg" alt="banner" />
+
+          <div class="container-lg">
+            <div class="breadcrumb-box">
+              <div class="heading-box">
+                <h1>وبلاگ</h1>
+              </div>
+              <ol class="breadcrumb">
+                <li><a href="/">صفحه اصلی</a></li>
+                <li>
+                  <a href="javascript:void(0)"><i data-feather="chevron-right"></i></a>
+                </li>
+
+                <li class="current"><a href="/blog">وبلاگ</a></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Breadcrumb End -->
+
+      <section class="ratio2_3">
+        <div class="container-lg">
+          <div class="blog-wrap">
+            <div class="row g-3 g-xxl-4">
+            {%for itm in a%}
+              <div class="col-sm-6 col-lg-4">
+                <div class="blog-box blog-grid">
+                  <a href="/blogd/{{itm.id}}" class="img-box">
+                    <img class="bg-img" src="{{itm.img.url}}" alt="blog" />
+                  </a>
+                  <div class="content-box">
+                    <span><i data-feather="clock"> </i>{{itm.date}}</span>
+                    <a href="/blogd/{{itm.id}}"> <h5 class="truncate-2">{{itm.title}}</h5> </a>
+                    <a href="/blogd/{{itm.id}}">
+                      <p class="truncate-2">
+                        {{itm.description}}
+                      </p></a>
+
+                    <div class="share-box">
+                      <div class="sender-box">
+                        <div class="avatar-img">
+                          <img src="{{itm.wimg.url}}" alt="avatar" />
+                        </div>
+                        <div class="sender-details"><h5>{{itm.writer}}</h5></div>
+                      </div>
+                      <div class="action-box">
+                        <span class="like"> <i class="like-btn" data-feather="thumbs-down"></i>26 </span>
+                        <span class="like"> <i class="like-btn" data-feather="thumbs-up"></i>100 </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {%endfor%}
+
+              
+            </div>
+          </div>
+          <!-- Pagination Start -->
+          <div class="pagination-wrap justify-content-center">
+            <ul class="pagination">
+              <li>
+                <a href="javascript:void(0)" class="prev"> &laquo;</a>
+              </li>
+              <li><a href="javascript:void(0)">1</a></li>
+              <li><a href="javascript:void(0)" class="active">2</a></li>
+              <li><a href="javascript:void(0)">3</a></li>
+              <li><a href="javascript:void(0)" class="next"> &raquo;</a></li>
+            </ul>
+          </div>
+          <!-- Pagination End -->
+        </div>
+      </section>
+    </main>
+    <!-- Main End -->
+{%endblock%}

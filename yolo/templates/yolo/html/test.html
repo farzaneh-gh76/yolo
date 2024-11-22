@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="get">
+        <input type="text" name="name">
+        <br/>
+        <input type="email" name="email">
+        <br/>
+        <textarea name="comment"></textarea>
+        <br/>
+        <input type="submit">
+    </form>
+    <form action="javascript:void(0)" class="custom-form form-pill">
+        <div class="row g-3 g-sm-4">
+          <div class="col-sm-6">
+            <div class="input-box">
+              <label for="name">نام کامل</label>
+              <input name="name" id="name" type="text" class="form-control" />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="input-box">
+              <label for="email">آدرس ایمیل</label>
+              <input name="email" id="email" type="email" class="form-control" />
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="input-box">
+              <label for="comment">نظرات</label>
+              <textarea class="form-control" id="comment" cols="30" rows="5"></textarea>
+            </div>
+          </div>
+
+          <div class="col-12 text-end">
+            <button class="post-button btn btn-solid btn-sm mb-line"> ارسال نظر <i class="arrow"></i></button>
+          </div>
+        </div>
+      </form>
+</body>
+</html>

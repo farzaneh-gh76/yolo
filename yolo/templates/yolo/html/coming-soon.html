@@ -1,0 +1,54 @@
+{%extends 'yolo/html/layout.html'%}
+{%load static%}
+{%block 'mohtava'%}
+<!-- Main Start -->
+<main class="main">
+  <section class="coming-soon p-0">
+    <!-- Breadcrumb Start -->
+    <div class="breadcrumb-wrap">
+      <div class="banner">
+        <img class="bg-img bg-top" src="{%static '/yolo/'%}assets/images/inner-page/banner-p2.jpg" alt="banner" />
+
+        <div class="container-lg">
+          <div class="row g-4 g-md-5 g-lg-4">
+            <div class="col-lg-6 order-2 order-lg-1">
+              <div class="alignment">
+                <div class="content-box">
+                  <h5>پاسخگوی یولو</h5>
+                  <div class="title-box4">
+                    <h4 class="heading">به زودی...<span class="bg-theme-blue"></span></h4>
+                  </div>
+                  <h6>این بخش در حال راه اندازی است. </h6>
+
+                  <p> تیم ما در حال کار برای راه اندازی این بخش است و به زودی فعال خواهد شد. در صورتی که تمایل دارید به محض فعال سازی مطلع شوید، ایمیل خود را برایمان ارسال کنید.</p>
+
+                  
+                  <form method="post">
+                    {%csrf_token%}
+                  <div class="search-box search-box-side">                    
+                    <div>
+                      <i class="search" data-feather="mail"></i>
+                      <input class="form-control" type="email" name="eml-nl" placeholder="آدرس ایمیل شما" />
+                    </div>
+                    <button class="filter btn-solid line-none btn-sm font-md" type="submit">به من اطلاع بده</button>
+                  </div>
+                </form>
+
+                  <a href="/" class="btn-solid mb-line btn-sm">بازگشت به صفحه اصلی <i class="arrow"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 order-1 order-lg-2">
+              <div class="img-box">
+                <img src="{%static '/yolo/'%}assets/svg/1.svg" alt="به زودی" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Breadcrumb End -->
+  </section>
+</main>
+<!-- Main End -->
+{%endblock%}

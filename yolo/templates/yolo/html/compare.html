@@ -1,0 +1,209 @@
+{%extends 'yolo/html/layout.html'%}
+{%load static%}
+{%block 'mohtava'%}
+<!-- Main Start -->
+<main class="main">
+  <!-- Breadcrumb Start -->
+  <div class="breadcrumb-wrap">
+    <div class="banner">
+      <img class="bg-img bg-top" src="{%static '/yolo/'%}assets/images/inner-page/banner-p.jpg" alt="banner" />
+
+      <div class="container-lg">
+        <div class="breadcrumb-box">
+          <div class="heading-box">
+            <h1>مقایسه</h1>
+          </div>
+          <ol class="breadcrumb">
+            <li><a href="index.html">صفحه اصلی</a></li>
+            <li>
+              <a href="javascript:void(0)"><i data-feather="chevron-right"></i></a>
+            </li>
+            <li><a href="shop-left-sidebar.html">خرید</a></li>
+            <li>
+              <a href="javascript:void(0)"><i data-feather="chevron-right"></i></a>
+            </li>
+            <li class="current"><a href="compare.html">مقایسه</a></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Breadcrumb End -->
+
+  <!-- Compare Section Start -->
+  <section>
+    <div class="container-lg">
+      <div class="row">
+        <div class="col-12">
+          <div class="comparemodal-body">
+            <div class="table-wrapper table-responsive ratio_asos">
+              <table class="table table-compare">
+                <thead>
+                  <tr>
+                    <th>عمل</th>
+                    <th class="remove">حذف</th>
+                    <th class="remove">حذف</th>
+                    <th class="remove">حذف</th>                        
+                  </tr>
+                </thead>
+                <tbody>
+                <tr class="table-product-details">
+                  <td></td>
+
+                  <td>
+                    <div class="product-box">
+                      <div class="product-image">
+                        <a class="w-100" href="javascript:void(0)">
+                          <img src="{%static '/yolo/'%}assets/images/fashion/product/front/8.jpg" class="img-fluid bg-img" alt="" />
+                        </a>
+                      </div>
+
+                      <div class="product-details">
+                        <div class="product-title">
+                          <a href="javascript:void(0)">
+                            <h6 class="truncate">عروسک مستربین</h6>
+                          </a>
+                        </div>
+                        <span class="font-light">132000 تومان</span> <del class="theme-color">120000تومان</del>
+                        <p class="content-color truncate-2">
+                          قابل شست و شو در ماشین لباسشویی
+                        </p>
+                        <a class="theme-color" href="product.html">جزئیات بیشتر...</a>
+
+                        <a href="javascript:void(0)" class="addtocart-btn btn-solid btn-sm">افزودن به سبد خرید<i class="arrow"></i></a>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td>
+                    <div class="product-box">
+                      <div class="product-image">
+                        <a class="w-100" href="javascript:void(0)">
+                          <img src="{%static '/yolo/'%}assets/images/fashion/product/front/9.jpg" class="img-fluid bg-img" alt="" />
+                        </a>
+                      </div>
+
+                      <div class="product-details">
+                        <div class="product-title">
+                          <a href="javascript:void(0)">
+                            <h6 class="truncate">ماگ سالیوان</h6>
+                          </a>
+                        </div>
+                        <span class="font-light">123000 تومان</span> <del class="theme-color">116000تومان</del>
+                        <p class="content-color truncate-2">
+                          قابل شست و شو در ماشین ظرف شویی
+                        </p>
+                        <a class="theme-color" href="product.html">جزئیات بیشتر...</a>
+
+                        <a href="javascript:void(0)" class="addtocart-btn btn-solid btn-sm">افزودن به سبد خرید<i class="arrow"></i></a>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td>
+                    <div class="product-box">
+                      <div class="product-image">
+                        <a class="w-100" href="javascript:void(0)">
+                          <img src="{%static '/yolo/'%}assets/images/fashion/product/front/10.jpg" class="img-fluid bg-img" alt="" />
+                        </a>
+                      </div>
+
+                      <div class="product-details">
+                        <div class="product-title">
+                          <a href="javascript:void(0)">
+                            <h6 class="truncate">کوسن نقشه جهان </h6>
+                          </a>
+                        </div>
+                        <span class="font-light">100000تومان</span> <del class="theme-color">90000تومان</del>
+                        <p class="content-color truncate-2">
+                        قابل شست و شو در ماشین لباسشویی
+                        </p>
+                        <a class="theme-color" href="product.html">جزئیات بیشتر...</a>
+
+                        <a href="javascript:void(0)" class="addtocart-btn btn-solid btn-sm">افزودن به سبد خرید<i class="arrow"></i></a>
+                      </div>
+                    </div>
+                  </td>
+
+                  
+                </tr>
+
+                <tr>
+                  <td>رتبه بندی مشتری</td>
+                  <td>
+                    <div class="d-flex align-items-center my0">
+                      <ul class="rating">
+                        <li class="fill"><i data-feather="star"></i></li>
+                        <li class="fill"><i data-feather="star"></i></li>
+                        <li class="fill"><i data-feather="star"></i></li>
+                        <li><i data-feather="star"></i></li>
+                        <li><i data-feather="star"></i></li>
+                      </ul>
+
+                      <span class="font-light ms-2">(22 نظر)</span>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center my0">
+                      <ul class="rating">
+                        <li class="fill"><i data-feather="star"></i></li>
+                        <li class="fill"><i data-feather="star"></i></li>
+                        <li class="fill"><i data-feather="star"></i></li>
+                        <li class="fill"><i data-feather="star"></i></li>
+                        <li><i data-feather="star"></i></li>
+                      </ul>
+
+                      <span class="font-light ms-2">(26 نظر)</span>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center my0">
+                      <ul class="rating">
+                        <li class="fill"><i data-feather="star"></i></li>
+                        <li class="fill"><i data-feather="star"></i></li>
+                        <li class="fill"><i data-feather="star"></i></li>
+                        <li class="fill"><i data-feather="star"></i></li>
+                        <li><i data-feather="star"></i></li>
+                      </ul>
+
+                      <span class="font-light ms-2">(24 نظر)</span>
+                    </div>
+                  </td>
+                  
+                </tr>
+
+                
+
+                
+
+                <tr>
+                  <td>دسته بندی</td>
+                  <td>هدیه</td>
+                  <td>هدیه</td>
+                  <td>دکوری</td>
+                  
+                </tr>
+
+                <tr>
+                  <td>تولید کننده</td>
+                  <td>وارداتی</td>
+                  <td>وارداتی</td>
+                  <td>وارداتی</td>
+                  
+                </tr>
+
+                
+
+               
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Compare Section End -->
+</main>
+<!-- Main End -->
+{%endblock%}

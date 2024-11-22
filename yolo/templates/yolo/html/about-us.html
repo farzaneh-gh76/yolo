@@ -1,0 +1,245 @@
+{%extends 'yolo/html/layout.html'%}
+{%load static%}
+{%block 'title'%}درباره ما{%endblock%}
+{%block 'mohtava'%}
+<!-- Main Start -->
+<main class="main about-us-page">
+  <!-- Breadcrumb Start -->
+  <div class="breadcrumb-wrap">
+    <div class="banner">
+      <img class="bg-img bg-top" src="{%static '/yolo/'%}assets/images/inner-page/banner-p.jpg" alt="banner" />
+      <div class="container-lg">
+        <div class="breadcrumb-box">
+          <div class="heading-box">
+            <h1>درباره ما</h1>
+          </div>
+          <ol class="breadcrumb">
+            <li><a href="/">خانه</a></li>
+            <li>
+              <a href="javascript:void(0)"><i data-feather="chevron-right"></i></a>
+            </li>
+            <li class="current"><a href="about-us.html">درباره ما</a></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Breadcrumb End -->
+
+  <!-- About Us Section Start -->
+  <section class="about-section">
+    <div class="container-lg">
+      <div class="row g-0 g-lg-4 g-xl-5">
+        <div class="col-lg-7 order-2 order-lg-1">
+          <div class="align-ment">
+            <div class="contenten-wrap">
+              <div class="content-box">
+                <h5>به خانه و آشپزخانه رنگی یولو خوش آمدید.</h5>
+                <h4>ما برترین محصولات را برای ساختن خانه ای رویایی به شما تقدیم می کنیم.</h4>
+                
+                {%for itm in s%}
+                <p>
+                  {{itm.description}}
+                </p>
+                {%endfor%}
+              </div>
+              {%for itm in s%}
+              <div class="row g-3 g-lg-2 g-xl-3 widget-list">
+                <div class="col-6 col-sm-4">
+                  <div class="widget">
+                    <span><i data-feather="users"></i></span>
+
+                    <div>
+                      <h6>{{itm.follower}}</h6>
+                      <p>دنبال کنندگان</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-6 col-sm-4">
+                  <div class="widget">
+                    <span><i data-feather="shopping-bag"></i></span>
+
+                    <div>
+                      <h6>{{itm.customer}}+</h6>
+                      <p>مشتریان</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-6 col-sm-4">
+                  <div class="widget">
+                    <span><i data-feather="shopping-cart"></i></span>
+
+                    <div>
+                      <h6>{{itm.dailyparcel}}+</h6>
+                      <p>سفارشات روزانه</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-6 col-sm-4">
+                  <div class="widget">
+                    <span><i data-feather="tv"></i></span>
+
+                    <div>
+                      <h6>{{itm.dailyview}}+</h6>
+                      <p>بازدید روزانه از صفحه</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-6 col-sm-4">
+                  <div class="widget">
+                    <span><i data-feather="graph"></i></span>
+
+                    <div>
+                      <h6>{{itm.rising}}</h6>
+                      <p>رشد در سال</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-6 col-sm-4">
+                  <div class="widget">
+                    <span><i data-feather="award"></i></span>
+
+                    <div>
+                      <h6>{{itm.variety}}+</h6>
+                      <p>تنوع محصولات</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {%endfor%}
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5 order-1 order-lg-2">
+          <div class="img-box">
+            {%for itm in s%}
+            <img class="img-fluid" src="{{itm.img.url}}" alt="Group  Photo" />
+            {%endfor%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- About Us Section End -->
+
+  <!-- Service Section Start -->
+  <section class="service-section2 about-service about-section">
+    <div class="container-lg">
+      <div class="title-box">
+        <h4 class="unique-heading">خدمات ما</h4>
+        <span class="title-divider1"><span class="squre"></span><span class="squre"></span></span>
+        <p>تجربه خریدی امن و لذت بخش</p>
+      </div>
+      {%for itm in s%}
+      <div class="row g-3 g-lg-4">
+        <div class="col-md-6">
+          <div class="service-box">
+            <div class="media">
+              <span class="svg-wrap">
+                <svg>
+                  <use xlink:href="{%static '/yolo/'%}assets/icons/svg/service/_sprite.svg#truck"></use>
+                </svg>
+              </span>
+              <div class="media-body">
+                <h5>{{itm.service1}}</h5>
+                <span> {{itm.service1detail}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="service-box">
+            <div class="media">
+              <span class="svg-wrap">
+                <svg>
+                  <use xlink:href="{%static '/yolo/'%}assets/icons/svg/service/_sprite.svg#component"></use>
+                </svg>
+              </span>
+              <div class="media-body">
+                <h5>{{itm.service2}}</h5>
+                <span> {{itm.service2detail}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="service-box">
+            <div class="media">
+              <span class="svg-wrap">
+                <svg>
+                  <use xlink:href="{%static '/yolo/'%}assets/icons/svg/service/_sprite.svg#dollar"></use>
+                </svg>
+              </span>
+              <div class="media-body">
+                <h5>{{itm.service3}}</h5>
+                <span> {{itm.service3detail}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="service-box">
+            <div class="media">
+              <span class="svg-wrap">
+                <svg>
+                  <use xlink:href="{%static '/yolo/'%}assets/icons/svg/service/_sprite.svg#thum"></use>
+                </svg>
+              </span>
+              <div class="media-body">
+                <h5>{{itm.service4}}</h5>
+                <span> {{itm.service4detail}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {%endfor%}
+    </div>
+  </section>
+  <!-- Service Section End -->      
+
+  <!-- Team Section Start -->
+  <section class="team-section">
+    <div class="container-lg">
+      <div class="title-box">
+        <h4 class="unique-heading">با تیم ما آشنا شوید</h4>
+        <span class="title-divider1"><span class="squre"></span><span class="squre"></span></span>
+        <p>گروه یولو با محوریت قرار دادن اخلاق و مهارت برای انتخاب اعضای خود، محیطی آرام و حرفه ای برای شما ساخته است.</p>
+      </div>
+      
+      
+      <div class="row gx-0 gy-4 gy-sm-5 gy-md-0 g-md-0 g-lg-1">
+        {%for itm in e%}
+        <div class="col-6 col-md-3">
+          <div class="member">
+            <div class="img-box">
+              <div class="bg-shape {{itm.theme}} "><img src={{itm.img.url}} class="img-fluid" alt="member" /> </div>
+            </div>
+            <div class="content-box">
+              <h6 class="title-color"> {{itm.name}}</h6>
+              <p class="content-color">{{itm.responsibility}} </p>
+              <ul class="social">              
+                
+                </ul>
+            </div>
+          </div>
+        </div>
+        {%endfor%}
+      </div>
+    </div>
+  </section>
+  <!-- Team Section End -->
+
+  
+</main>
+<!-- Main End -->
+
+{%endblock%}
