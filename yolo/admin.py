@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import *
+
 # Register your models here.
 
 admin.site.register(shop_prd)
@@ -17,3 +18,4 @@ admin.site.register(fquestion)
 admin.site.register(user_address)
 admin.site.register(banner)
 admin.site.register(product_comment)
+admin.site.register(CustomUser)

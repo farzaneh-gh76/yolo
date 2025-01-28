@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import AbstractUser
 # Create your models here.
 class category(models.Model):
     name=models.CharField(max_length=30)
@@ -165,3 +165,7 @@ class product_comment(models.Model):
     num=models.IntegerField( verbose_name="شماره محصول" )
     def __str__(self) -> str:
         return self.name
+
+roleitems=(("normal","معمولی"),("VIP",'ویژه'))   
+class CustomUser(AbstractUser):
+    role=models.CharField(max_length=20, choices=roleitems,default="normal")

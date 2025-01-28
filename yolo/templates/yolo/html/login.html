@@ -67,7 +67,9 @@
               <div>
                 <h5>ورود به سیستم <span class="bg-theme-blue"></span></h5>
                 <p class="font-md content-color">برای دسترسی به فهرست علاقه مندی ها، سبد خرید و سایر امکانات سایت لطفا وارد شوید.</p>
-                <form action="/" class="custom-form form-pill">
+                <p style="color: rgb(214, 0, 46);">{{msg}}</p>
+                <form method="post" class="custom-form form-pill">
+                  {% csrf_token %}
                   <div class="input-box">
                     <label for="email">پست الکترونیک</label>
                     <input class="form-control" type="email" required name="email" id="email" />

@@ -1,5 +1,8 @@
 from django.shortcuts import render,redirect
 from .models import *
+from django.contrib.auth.models import  User
+from django.contrib.auth.decorators import  login_required
+from django.contrib.auth import  authenticate,login as lg , logout as lo
 # Create your views here.
 
 def catg(request, adad):
@@ -113,7 +116,7 @@ def blogd(request, adad):
     
     return render(request , "yolo/html/blog-detail.html",context={"s":s  ,"c":c, "a":a , "i":i , "msg":msg})
 
-
+@login_required
 def cart(request):
     s=service.objects.all()
     c=category.objects.all()
@@ -199,7 +202,21 @@ def forgot(request):
     return render(request , "yolo/html/forgot-password.html")
 
 def login(request):
+    if (request.method=="POST"):
+        usr=request.POST.get("email")
+        pass1=request.POST.get("password")
+        u=authenticate(username=usr,password=pass1)
+        if u is not None:
+            lg(request,u)
+            return redirect("/user")
+        else:
+            return render(request , "yolo/html/login.html" , context={"msg":"نام کاربری و یا رمز عبور اشتباه است"})
+
     return render(request , "yolo/html/login.html")
+
+def logout(request):
+    lo(request)
+    return redirect('/login')
 
 def onsale(request):
     p=[]
@@ -271,6 +288,13 @@ def product(request, adad):
     return render(request , "yolo/html/product.html" , context={"p":p , "s":s  ,"c":c, "i":i , "cp":cp ,"sug":sug})
 
 def register(request):
+    if(request.method=="POST"):
+        usr=request.POST.get("email")
+        eml=request.POST.get("email")
+        name=request.POST.get("full-name")
+        pass1=request.POST.get("password")
+        User.objects.create_user(usr,eml,pass1,first_name=name,is_staff=False)
+        return redirect("/login")        
     return render(request , "yolo/html/register.html")
 
 def resetpassword(request):
@@ -317,7 +341,7 @@ def success(request):
             return redirect("/success")
     return render(request , "yolo/html/success.html" ,  context={ "s":s  ,"c":c, "i":i})
 
-
+@login_required
 def user(request):
     u=user_address.objects.all()
     s=service.objects.all()
@@ -341,7 +365,7 @@ def user(request):
     return render(request , "yolo/html/user-dashboard.html", context={"s":s  ,"c":c, "i":i , "u":u})
    
 
-
+@login_required
 def wishlist(request):
     s=service.objects.all()
     c=category.objects.all()

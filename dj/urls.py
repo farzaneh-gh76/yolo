@@ -35,6 +35,7 @@ urlpatterns = [
     path('faqs/', faqs),
     path('forgot/', forgot),
     path('login/', login),
+    path('logout/', logout),
     path('onsale/', onsale),
     path('ordersuccess/', ordersuccess),
     path('otp/', otp),

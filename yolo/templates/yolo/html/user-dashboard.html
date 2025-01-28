@@ -316,8 +316,8 @@
                   </div>
 
                   <div class="user-name">
-                    <h5>فرزانه قندهاری </h5>
-                    <h6>ghandehari.f76@gmail.com</h6>
+                    <h5>{{user.first_name}}  </h5>
+                    <h6>{{user}}</h6>
                   </div>
                 </div>
 
@@ -359,6 +359,11 @@
                       <span><svg style="transform: rotateY(180deg);" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
                     </button>
                   </li>
+                  <li class="nav-item" role="presentation">
+                    <a href="/logout"  style="color: rgb(20, 146, 196);">
+                    خروج
+                    </a>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -369,8 +374,9 @@
                 <div class="tab-pane show active" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
                   <div class="dashboard-tab">
                     <div class="title-box3">
-                      <h3>فرزانه عزیز، خوش آمدید!</h3>
+                      <h3>{{user.first_name}} عزیز، خوش آمدید!</h3>
                       <p>
+
                         در اینجا می توانید مشخصات خود را تغییر دهید، سفارش خود را پیگیری کنید، به آدرس های ذخیره شده خود دسترسی داشته باشید و یا تنظیمات حساب کاربری خود را تغییر دهید.                    </p>
                     </div>
 
