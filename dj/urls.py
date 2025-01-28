@@ -47,6 +47,7 @@ urlpatterns = [
     path('shop/', shop),
     path('success/', success),
     path('user/', user),
+    path('uservip/', uservip),
     path('wishlist/', wishlist),
     
 ]+static(settings.MEDIA_URL , document_root=settings.MEDIA_ROOT)

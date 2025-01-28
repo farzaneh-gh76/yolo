@@ -166,6 +166,6 @@ class product_comment(models.Model):
     def __str__(self) -> str:
         return self.name
 
-roleitems=(("normal","معمولی"),("VIP",'ویژه'))   
+roleitems=(("normal","عادی"),("vip","ویژه"))   
 class CustomUser(AbstractUser):
-    role=models.CharField(max_length=20, choices=roleitems,default="normal")
+    role=models.CharField(max_length=20, choices=roleitems, default="normal")

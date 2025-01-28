@@ -1,6 +1,5 @@
 from django.shortcuts import render,redirect
 from .models import *
-from django.contrib.auth.models import  User
 from django.contrib.auth.decorators import  login_required
 from django.contrib.auth import  authenticate,login as lg , logout as lo
 # Create your views here.
@@ -208,7 +207,11 @@ def login(request):
         u=authenticate(username=usr,password=pass1)
         if u is not None:
             lg(request,u)
-            return redirect("/user")
+            if (u.role=="normal"):
+                return redirect("/user")
+            else:
+                return redirect("/uservip")
+            
         else:
             return render(request , "yolo/html/login.html" , context={"msg":"نام کاربری و یا رمز عبور اشتباه است"})
 
@@ -293,7 +296,7 @@ def register(request):
         eml=request.POST.get("email")
         name=request.POST.get("full-name")
         pass1=request.POST.get("password")
-        User.objects.create_user(usr,eml,pass1,first_name=name,is_staff=False)
+        CustomUser.objects.create_user(usr,eml,pass1,first_name=name,is_staff=False)
         return redirect("/login")        
     return render(request , "yolo/html/register.html")
 
@@ -362,8 +365,37 @@ def user(request):
             user_address.objects.create(name=n , email=em , call=m , city=co , address=a ,zip=cp)
             return redirect("/success")    
         
-    return render(request , "yolo/html/user-dashboard.html", context={"s":s  ,"c":c, "i":i , "u":u})
-   
+    if(request.user.role=="normal"):
+        return render(request , "yolo/html/user-dashboard.html", context={"s":s  ,"c":c, "i":i , "u":u})
+    else:
+        return redirect("/login")
+
+@login_required
+def uservip(request):
+    u=user_address.objects.all()
+    s=service.objects.all()
+    c=category.objects.all()
+    i=identity.objects.all()
+    if (request.method=="POST"):
+        e=request.POST.get("eml-nl")
+        n=request.POST.get("name")
+        em=request.POST.get("email")
+        m=request.POST.get("mobile")
+        a=request.POST.get("address1")
+        cp=request.POST.get("zip")
+        co=request.POST.get("country") 
+        if (e):
+            newsletter.objects.create(email=e)
+            return redirect("/success")               
+        if (n and m and a and cp and co):
+            user_address.objects.create(name=n , email=em , call=m , city=co , address=a ,zip=cp)
+            return redirect("/success")    
+    if(request.user.role=="vip"):
+        return render(request , "yolo/html/user-dashboard-vip.html", context={"s":s  ,"c":c, "i":i , "u":u})
+    else:
+        return redirect("/login")
+
+       
 
 @login_required
 def wishlist(request):
