@@ -150,16 +150,8 @@
 
       <!-- Menu Right Start  -->
       <div class="menu-right">
-        <div class="select-menu">
-          
-          <div class="dropdown select-dropdown" id="translate">
-            <button id="languageSelected"><span>زبان</span> <i data-feather="chevron-down"></i></button>
-            <ul class="onhover-show-div">
-              <li class="lang">فارسی</li>
-              <li class="lang">انگلیسی</li>
-              <li class="lang">عربی</li>                
-            </ul>
-          </div>
+        <div>
+          &nbsp;
         </div>
 
 
@@ -186,25 +178,28 @@
             </div>
           </li>
 
+          
           <li>
             <div class="dropdown whislist-dropdown">
-              <a href="javascript:void(0)"><i data-feather="heart"></i> <span class="notification-label">0</span></a>
-              <div class="onhover-show-div">
-                <a href="/wishlist"> <img src="{%static '/yolo/'%}assets/icons/svg/box.svg" class="img-fluid" alt="box" /> </a>
-                <div class="content">
-                  <a href="/wishlist">
-                    <h6>فهرست علاقه مندی شما خالی است!!</h6>
-                    <p>بیشتر کاوش کنید و موارد را فهرست کنید.</p>
-                  </a>
-                </div>
-              </div>
+              <a href="/wishlist"><i data-feather="heart"></i>
+                {%if user.is_authenticated%}                
+                <span class="notification-label">{{w}}</span>
+                {%endif%}
+              </a>
+              
             </div>
           </li>
+          
 
           <!-- Cart Menu Start -->
           <li>
             <div class="dropdown shopingbag">
-              <a href="javascript:void(0)" class="cart-button"><i data-feather="shopping-bag"></i> <span class="notification-label">3</span></a>
+              <a href="/cart" class="cart-button"><i data-feather="shopping-bag"></i> 
+                {%if user.is_authenticated%} 
+                <span class="notification-label">{{can}}</span>
+                {%endif%}
+              </a>
+              {%if user.is_authenticated%} 
               <a href="javascript:void(0)" class="overlay-cart overlay-common"></a>
               <div class="onhover-cart-dropdown">
                 <div class="onhover-show-div">
@@ -217,52 +212,20 @@
 
                   <div class="card-wrap custom-scroll">
                     <!-- Cart Item Start -->
+                     {%for itm in ca.items.all%}
                     <div class="cart-card media">
-                      <a href="product.html"> <img src="{%static '/yolo/'%}assets/images/fashion/product/front/8.jpg" class="img-fluid" alt="product" /> </a>
+                      <a href="/product/{{itm.product.id}}" > <img src="{{itm.product.img.url}}"  class="img-fluid" alt="product" />
                       <div class="media-body">
-                        <a href="product.html"> <h6>عروسک مستربین</h6></a>
-                        <span>120000 تومان</span>
-                        <div class="plus-minus">
-                          <i class="sub" data-feather="minus"></i>
-                          <input type="number" value="1" min="1" max="10" />
-                          <i class="add" data-feather="plus"></i>
-                        </div>
+                        <a href="/product/{{itm.product.id}}"> <h6>{{itm.product.title}} </h6></a>
+                        <span>{{itm.product.curprice}} تومان</span>
+                        
                       </div>
-                      <button class="remove-cart"><i data-feather="x"></i></button>
+                      
                     </div>
+                    {%endfor%}
                     <!-- Cart Item End -->
 
-                    <!-- Cart Item Start -->
-                    <div class="cart-card media">
-                      <a href="product.html"> <img src="{%static '/yolo/'%}assets/images/fashion/product/front/9.jpg" class="img-fluid" alt="product" /> </a>
-                      <div class="media-body">
-                        <a href="product.html"> <h6>ماگ سالیوان</h6></a>
-                        <span>116000 تومان   </span>
-                        <div class="plus-minus">
-                          <i class="sub" data-feather="minus"></i>
-                          <input type="number" value="1" min="1" max="10" />
-                          <i class="add" data-feather="plus"></i>
-                        </div>
-                      </div>
-                      <button class="remove-cart"><i data-feather="x"></i></button>
-                    </div>
-                    <!-- Cart Item End -->
-
-                    <!-- Cart Item Start -->
-                    <div class="cart-card media">
-                      <a href="product.html"> <img src="{%static '/yolo/'%}assets/images/fashion/product/front/10.jpg" class="img-fluid" alt="product" /> </a>
-                      <div class="media-body">
-                        <a href="product.html"> <h6>کوسن نقشه جهان</h6></a>
-                        <span>90000 تومان</span>
-                        <div class="plus-minus">
-                          <i class="sub" data-feather="minus"></i>
-                          <input type="number" value="2" min="1" max="10" />
-                          <i class="add" data-feather="plus"></i>
-                        </div>
-                      </div>
-                      <button class="remove-cart"><i data-feather="x"></i></button>
-                    </div>
-                    <!-- Cart Item End -->
+                    
                   </div>
                   <div class="dropdown-footer">                
                     <div class="btn-group block-group">
@@ -271,6 +234,8 @@
                   </div>
                 </div>
               </div>
+              {%endif%}
+
             </div>
           </li>
           <!-- Cart Menu End -->

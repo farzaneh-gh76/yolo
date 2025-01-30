@@ -121,39 +121,39 @@
                 <div class="cart-wrap grand-total-wrap">
                   <div>
                     <div class="order-summery-box">
-                      <h5 class="cart-title">جزئیات قیمت (3 مورد)</h5>
+                      <h5 class="cart-title">جزئیات قیمت ({{num}} مورد)</h5>
                       <ul class="order-summery">
                         <li>
                           <span>مبلغ کل</span>
-                          <span>220000 تومان</span>
+                          <span>{{to}} تومان</span>
                         </li>
-
+    
                         <li>
                           <span>سود شما از این خرید</span>
-                          <span class="theme-color">-20000 تومان</span>
+                          <span class="theme-color">-{{ben}} تومان</span>
                         </li>
-
+    
                         <li>
                           <span>کد تخفیف</span>
                           <a href="javascript:void(0)" class="font-danger">اعمال نشده</a>
                         </li>
-
+    
                         <li>
                           <span>هزینه ارسال</span>
-                          <span>15000 تومان</span>
+                          <span>20000 تومان</span>
                         </li>
-
+    
                         <li class="pb-0">
                           <span>قابل پرداخت</span>
-                          <span>215000 تومان</span>
+                          <span>{{sm}} تومان</span>
                         </li>
                       </ul>
                       <div class="row g-3 mt-2">
                         <div class="col-6 col-md-12">
-                          <a href="#" class="btn-solid checkout-btn">اقدام به پرداخت <i class="arrow"></i></a>
+                          <a href="/address" class="btn-solid checkout-btn">تسویه حساب <i class="arrow"></i></a>
                         </div>
                         <div class="col-6 col-md-12">
-                          <a href="/cart" class="btn-outline w-100 justify-content-center checkout-btn"> بازگشت به سبد خرید </a>
+                          <a href="/shop" class="btn-outline w-100 justify-content-center checkout-btn"> بازگشت به فروشگاه </a>
                         </div>
                       </div>
                     </div>

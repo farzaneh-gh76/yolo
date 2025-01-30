@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect,get_object_or_404
 from .models import *
 from django.contrib.auth.decorators import  login_required
 from django.contrib.auth import  authenticate,login as lg , logout as lo
+import jdatetime
 # Create your views here.
 
 def catg(request, adad):
@@ -46,6 +47,17 @@ def error(request):
     return render(request , "yolo/html/404.html", context={ "s":s ,"c":c, "i":i})
 
 def about(request):
+    if request.user.is_authenticated :
+         ws=wish.objects.filter(user=request.user)
+         ca=order.objects.filter(user=request.user,status="cart").first()
+         
+         w=len(ws)
+         can=len(ca.items.all())
+    else:
+        w=0
+        can=0
+        ca=[]
+    
     s=service.objects.all()
     c=category.objects.all()
     i=identity.objects.all()
@@ -55,7 +67,7 @@ def about(request):
         if (e):
             newsletter.objects.create(email=e)
             return redirect("/success")
-    return render(request , "yolo/html/about-us.html" , context={"e":e , "s":s ,"c":c, "i":i})
+    return render(request , "yolo/html/about-us.html" , context={"e":e , "s":s ,"c":c, "i":i,"w":w ,"can":can , "ca":ca})
 
 
 @login_required
@@ -65,6 +77,17 @@ def address(request):
     s=service.objects.all()
     c=category.objects.all()
     i=identity.objects.all()
+    ord=order.objects.filter(user=request.user,status="cart").first()    
+    num=0
+    ben=0
+    to=0
+    
+    for itm in ord.items.all():
+        to+=itm.product.preprice * itm.qnt
+        num+=itm.qnt
+        ben+=((itm.product.preprice * itm.qnt)-(itm.product.curprice * itm.qnt))
+    
+    sm=20000+to-ben
     if (request.method=="POST"):
         e=request.POST.get("eml-nl")
         n=request.POST.get("name")
@@ -80,9 +103,19 @@ def address(request):
             user_address.objects.create(name=n , email=em , call=m , city=co , address=a ,zip=cp)
             return redirect("/success")    
         
-    return render(request , "yolo/html/address.html", context={"s":s  ,"c":c, "i":i , "u":u})
+    return render(request , "yolo/html/address.html", context={"s":s  ,"c":c, "i":i , "u":u,"ord":ord , "sm":sm , "num":num , "ben":ben ,"to":to})
 
 def blog(request):
+    if request.user.is_authenticated :
+         ws=wish.objects.filter(user=request.user)
+         ca=order.objects.filter(user=request.user,status="cart").first()
+         
+         w=len(ws)
+         can=len(ca.items.all())
+    else:
+        w=0
+        can=0
+        ca=[]
     s=service.objects.all()
     c=category.objects.all()
     a=article.objects.all()
@@ -92,15 +125,29 @@ def blog(request):
         if (e):
             newsletter.objects.create(email=e)
             return redirect("/success")
-    return render(request , "yolo/html/blog-grid.html", context={"s":s  ,"c":c, "a":a , "i":i})
+    return render(request , "yolo/html/blog-grid.html", context={"s":s  ,"c":c, "a":a , "i":i,"w":w ,"can":can , "ca":ca})
 
 def blogd(request, adad): 
+    if request.user.is_authenticated :
+         ws=wish.objects.filter(user=request.user)
+         ca=order.objects.filter(user=request.user,status="cart").first()
+         
+         w=len(ws)
+         can=len(ca.items.all())
+    else:
+        w=0
+        can=0
+        ca=[]
     msg=commentblog.objects.filter(num=adad)
     s=service.objects.all()
     c=category.objects.all()
     a=article.objects.filter(id=adad)
     i=identity.objects.all()
-
+    for itm in a:
+        date_gregorian=itm.date
+        date_jalali=jdatetime.datetime.fromgregorian(datetime=date_gregorian)
+        date_jalali_str=date_jalali.strftime("%Y/%m/%d")
+ 
     if (request.method=="POST"):
         e=request.POST.get("eml-nl") 
         if (e):
@@ -115,16 +162,24 @@ def blogd(request, adad):
             commentblog.objects.create(name=n , email=e , comment=m , num=adad)
             return redirect("/success")
     
-    return render(request , "yolo/html/blog-detail.html",context={"s":s  ,"c":c, "a":a , "i":i , "msg":msg})
+    return render(request , "yolo/html/blog-detail.html",context={"s":s  ,"c":c, "a":a , "i":i , "msg":msg,"dj":date_jalali_str,"w":w ,"can":can , "ca":ca})
 
 @login_required
 def cart(request):
+    if request.user.is_authenticated :
+         ws=wish.objects.filter(user=request.user)
+         ca=order.objects.filter(user=request.user,status="cart").first()
+         
+         w=len(ws)
+         can=len(ca.items.all())
+    else:
+        w=0
+        can=0
+        ca=[]
     s=service.objects.all()
     c=category.objects.all()
     i=identity.objects.all()
-    ord=order.objects.filter(user=request.user,status="cart").first()
-
-    
+    ord=order.objects.filter(user=request.user,status="cart").first()    
     num=0
     ben=0
     to=0
@@ -141,10 +196,20 @@ def cart(request):
         if (e):
             newsletter.objects.create(email=e)
             return redirect("/success")
-    return render(request , "yolo/html/cart.html", context={"s":s  ,"c":c, "i":i,"ord":ord , "sm":sm , "num":num , "ben":ben ,"to":to})
+    return render(request , "yolo/html/cart.html", context={"s":s  ,"c":c, "i":i,"ord":ord , "sm":sm , "num":num , "ben":ben ,"to":to,"w":w ,"can":can , "ca":ca})
 
 
 def comingsoon(request):
+    if request.user.is_authenticated :
+         ws=wish.objects.filter(user=request.user)
+         ca=order.objects.filter(user=request.user,status="cart").first()
+         
+         w=len(ws)
+         can=len(ca.items.all())
+    else:
+        w=0
+        can=0
+        ca=[]
     s=service.objects.all()
     c=category.objects.all()
     i=identity.objects.all()
@@ -153,22 +218,23 @@ def comingsoon(request):
         if (e):
             newsletter.objects.create(email=e)
             return redirect("/success")  
-    return render(request , "yolo/html/coming-soon.html",context={"s":s  ,"c":c, "i":i})
+    return render(request , "yolo/html/coming-soon.html",context={"s":s  ,"c":c, "i":i,"w":w ,"can":can , "ca":ca})
 
 
-def compare(request):
-    s=service.objects.all()
-    c=category.objects.all()
-    i=identity.objects.all()
-    if (request.method=="POST"):
-        e=request.POST.get("eml-nl") 
-        if (e):
-            newsletter.objects.create(email=e)
-            return redirect("/success")
-    return render(request , "yolo/html/compare.html", context={"s":s  ,"c":c, "i":i})
+
 
 
 def contact(request):
+    if request.user.is_authenticated :
+         ws=wish.objects.filter(user=request.user)
+         ca=order.objects.filter(user=request.user,status="cart").first()
+         
+         w=len(ws)
+         can=len(ca.items.all())
+    else:
+        w=0
+        can=0
+        ca=[]
     s=service.objects.all()
     c=category.objects.all()
     i=identity.objects.all()
@@ -187,9 +253,19 @@ def contact(request):
             message.objects.create(fname=f ,lname=l, email=em, call=n , comment=msg)
             return redirect("/success")   
 
-    return render(request , "yolo/html/contact-us.html" , context={"s":s  ,"c":c, "i":i})
+    return render(request , "yolo/html/contact-us.html" , context={"s":s  ,"c":c, "i":i,"w":w ,"can":can , "ca":ca})
 
 def faqs(request):
+    if request.user.is_authenticated :
+         ws=wish.objects.filter(user=request.user)
+         ca=order.objects.filter(user=request.user,status="cart").first()
+         
+         w=len(ws)
+         can=len(ca.items.all())
+    else:
+        w=0
+        can=0
+        ca=[]
     s=service.objects.all()
     c=category.objects.all()
     i=identity.objects.all()
@@ -210,7 +286,7 @@ def faqs(request):
         if (f and l and em and n and msg):
             message.objects.create(fname=f ,lname=l, email=em, call=n , comment=msg)
             return redirect("/success")
-    return render(request , "yolo/html/faqs.html", context={"s":s  ,"c":c, "i":i , "q1":q1 ,"q2":q2 ,"q3":q3})
+    return render(request , "yolo/html/faqs.html", context={"s":s  ,"c":c, "i":i , "q1":q1 ,"q2":q2 ,"q3":q3,"w":w ,"can":can , "ca":ca})
 
 
 def forgot(request):
@@ -350,6 +426,16 @@ def shop(request):
     return render(request , "yolo/html/shop.html" , context={"p":p ,"s":s  ,"c":c, "i":i})
 
 def success(request):
+    if request.user.is_authenticated :
+         ws=wish.objects.filter(user=request.user)
+         ca=order.objects.filter(user=request.user,status="cart").first()
+         
+         w=len(ws)
+         can=len(ca.items.all())
+    else:
+        w=0
+        can=0
+        ca=[]
     s=service.objects.all()
     c=category.objects.all()
     i=identity.objects.all()
@@ -358,7 +444,7 @@ def success(request):
         if (e):
             newsletter.objects.create(email=e)
             return redirect("/success")
-    return render(request , "yolo/html/success.html" ,  context={ "s":s  ,"c":c, "i":i})
+    return render(request , "yolo/html/success.html" ,  context={ "s":s  ,"c":c, "i":i,"w":w ,"can":can , "ca":ca})
 
 @login_required
 def user(request):
@@ -461,3 +547,10 @@ def pluscart(request,itmid):
     orditm.qnt+=1
     orditm.save()
     return redirect("/cart")
+
+@login_required
+def addwish(request,pid):
+    product=get_object_or_404(shop_prd,id=pid)
+    w,created=wish.objects.get_or_create(user=request.user , product=product)     
+    
+    return redirect("/wishlist")
