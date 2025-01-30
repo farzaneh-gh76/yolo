@@ -166,8 +166,14 @@
             <div class="dropdown user-dropdown">
               <a href="javascript:void(0)"><i data-feather="user"></i></a>
               <ul class="onhover-show-div">
+                {%if user.is_authenticated%}
+                <li><a href="/user">حساب کاربری</a></li>
+                <li><a href="/logout"> خروج </a></li>
+                
+                {%else%}
                 <li><a href="/login">ورود به سیستم</a></li>
                 <li><a href="/register">ثبت نام</a></li>
+                {%endif%}
               </ul>
             </div>
           </li>

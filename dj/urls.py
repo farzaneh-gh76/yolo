@@ -49,5 +49,9 @@ urlpatterns = [
     path('user/', user),
     path('uservip/', uservip),
     path('wishlist/', wishlist),
+    path('addcart/<pid>', addcart),
+    path('deletecart/<itmid>', deletecart),
+    path('pluscart/<itmid>', pluscart),
+    path('minuscart/<itmid>', minuscart),
     
 ]+static(settings.MEDIA_URL , document_root=settings.MEDIA_ROOT)

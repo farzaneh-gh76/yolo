@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.conf import settings
+import uuid
 # Create your models here.
 class category(models.Model):
     name=models.CharField(max_length=30)
@@ -169,3 +171,18 @@ class product_comment(models.Model):
 roleitems=(("normal","عادی"),("vip","ویژه"))   
 class CustomUser(AbstractUser):
     role=models.CharField(max_length=20, choices=roleitems, default="normal")
+
+
+class order(models.Model):
+    user=models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    status_choices=(("cart","سبدخرید"),("final","تایید نهایی"))
+    status=models.CharField(max_length=20,choices=status_choices,default="cart")
+    tracking_code=models.UUIDField(default=uuid.uuid4,editable=False,unique=True)
+    created_at=models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return f"order: {self.tracking_code} | {self.status}"
+    
+class orderitem(models.Model):
+    order=models.ForeignKey(order,on_delete=models.CASCADE,related_name="items")
+    product=models.ForeignKey(shop_prd,on_delete=models.CASCADE)
+    qnt=models.PositiveIntegerField(default=0)

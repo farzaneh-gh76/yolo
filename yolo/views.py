@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from .models import *
 from django.contrib.auth.decorators import  login_required
 from django.contrib.auth import  authenticate,login as lg , logout as lo
@@ -57,6 +57,8 @@ def about(request):
             return redirect("/success")
     return render(request , "yolo/html/about-us.html" , context={"e":e , "s":s ,"c":c, "i":i})
 
+
+@login_required
 def address(request):
     #u=user_address.objects.filter(user_account_id=adad)
     u=user_address.objects.all()
@@ -120,12 +122,26 @@ def cart(request):
     s=service.objects.all()
     c=category.objects.all()
     i=identity.objects.all()
+    ord=order.objects.filter(user=request.user,status="cart").first()
+
+    
+    num=0
+    ben=0
+    to=0
+    
+    for itm in ord.items.all():
+        to+=itm.product.preprice * itm.qnt
+        num+=itm.qnt
+        ben+=((itm.product.preprice * itm.qnt)-(itm.product.curprice * itm.qnt))
+    
+    sm=20000+to-ben
+
     if (request.method=="POST"):
         e=request.POST.get("eml-nl") 
         if (e):
             newsletter.objects.create(email=e)
             return redirect("/success")
-    return render(request , "yolo/html/cart.html", context={"s":s  ,"c":c, "i":i})
+    return render(request , "yolo/html/cart.html", context={"s":s  ,"c":c, "i":i,"ord":ord , "sm":sm , "num":num , "ben":ben ,"to":to})
 
 
 def comingsoon(request):
@@ -367,6 +383,8 @@ def user(request):
         
     if(request.user.role=="normal"):
         return render(request , "yolo/html/user-dashboard.html", context={"s":s  ,"c":c, "i":i , "u":u})
+    if(request.user.role=="vip"):
+        return redirect("/uservip")
     else:
         return redirect("/login")
 
@@ -392,6 +410,8 @@ def uservip(request):
             return redirect("/success")    
     if(request.user.role=="vip"):
         return render(request , "yolo/html/user-dashboard-vip.html", context={"s":s  ,"c":c, "i":i , "u":u})
+    if(request.user.role=="normal"):
+        return redirect("/user")
     else:
         return redirect("/login")
 
@@ -408,3 +428,36 @@ def wishlist(request):
             newsletter.objects.create(email=e)
             return redirect("/success")
     return render(request , "yolo/html/wishlist.html" ,  context={ "s":s  ,"c":c, "i":i})
+
+@login_required
+def addcart(request,pid):
+    product=get_object_or_404(shop_prd,id=pid)
+    ord,created=order.objects.get_or_create(user=request.user,status="cart")
+    orditm,created=orderitem.objects.get_or_create(order=ord,product=product)
+   
+    orditm.qnt+=1
+    orditm.save()
+    return redirect("/cart")
+
+@login_required
+def deletecart(request,itmid):
+    orditm=get_object_or_404(orderitem,id=itmid,order__user=request.user,order__status="cart")
+    
+    orditm.delete()
+    return redirect("/cart")
+
+@login_required
+def minuscart(request,itmid):
+    orditm=get_object_or_404(orderitem,id=itmid,order__user=request.user,order__status="cart")
+    orditm.qnt-=1
+    orditm.save()
+    if (orditm.qnt==0):
+        orditm.delete()
+    return redirect("/cart")
+
+@login_required
+def pluscart(request,itmid):
+    orditm=get_object_or_404(orderitem,id=itmid,order__user=request.user,order__status="cart")
+    orditm.qnt+=1
+    orditm.save()
+    return redirect("/cart")

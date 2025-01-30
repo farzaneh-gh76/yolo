@@ -44,96 +44,38 @@
                     <th class="d-none d-sm-table-cell">محصول</th>
                     <th class="d-none d-sm-table-cell">قیمت</th>
                     <th class="d-none d-lg-table-cell">تعداد</th>
-                    <th class="d-none d-xl-table-cell">جمع</th>
+                    <th class="d-none d-xl-table-cell">حذف از سبد</th>
                   </tr>
                 </thead>
 
                 <tbody>
+                  {%for itm in ord.items.all %}
                   <tr>
                     <td>
                       <div class="product-detail">
-                        <img class="pr-img" src="{%static '/yolo/'%}assets/images/fashion/product/front/8.jpg" alt="image" />
+                        <img class="pr-img" src="{{itm.product.img.url}}" alt="image" />
                         <div class="details">
-                          <h4 class="title-color font-default2"  >  <a href="/product">عروسک مستربین</a> </h4>
-                          <span class="sold-by">دسته بندی: <span>هدیه</span> </span>
-                          <span class="size gap-2 d-flex">اندازه: <span>M</span> </span>
-                          <span class="size gap-2 d-flex d-sm-none">قیمت: <span>120000 تومان</span> </span>
-                          <div class="plus-minus mt-2 d-inline-flex d-lg-none">
-                            <i class="sub" data-feather="minus"></i>
-                            <input type="number" value="1" min="1" max="10" />
-                            <i class="add" data-feather="plus"></i>
-                          </div>
+                          <h4 class="title-color font-default2"  >  <a href="/product/{{itm.product.id}}">{{itm.product.title}}</a> </h4>
+                          <span class="sold-by">دسته بندی: <span>{{itm.product.category}}</span> </span>
+                                         
                         </div>
                       </div>
                     </td>
 
-                    <td class="price d-none d-sm-table-cell">120000تومان</td>
+                    <td class="price d-none d-sm-table-cell">{{itm.product.curprice}}تومان   &nbsp; <del style="color: rgb(24, 90, 211);">{{itm.product.preprice}} تومان</del></td>
                     <td class="d-none d-lg-table-cell">
                       <div class="plus-minus">
-                        <i class="sub" data-feather="minus"></i>
-                        <input type="number" value="1" min="1" max="10" />
-                        <i class="add" data-feather="plus"></i>
+                        <a href="/minuscart/{{itm.id}}"> - </a>
+                        <h3> &nbsp;</h3>
+                         <h4 style="color: rgb(24, 90, 211);">{{itm.qnt}}</h4>
+                         <h3> &nbsp;</h3>
+                        <a  href="/pluscart/{{itm.id}}"> + </a>
                       </div>
                     </td>
-                    <td class="total d-none d-xl-table-cell">120000تومان</td>
+                    <td class="total d-none d-xl-table-cell"><a href="/deletecart/{{itm.id}}" style="color: rgb(218, 3, 31);">حذف</a></td>
                   </tr>
+                  {%endfor%}
 
-                  <tr>
-                    <td>
-                      <div class="product-detail">
-                        <img class="pr-img" src="{%static '/yolo/'%}assets/images/fashion/product/front/9.jpg" alt="image" />
-                        <div class="details">
-                          <h4 class="title-color font-default2"><a href="/product">ماگ سالیوان</a></h4>
-                          <span class="sold-by">دسته بندی: <span>هدیه</span> </span>
-                          <span class="size gap-2 d-flex">اندازه: <span>--</span> </span>
-                          <span class="size gap-2 d-flex d-sm-none">قیمت: <span>116000 تومان</span> </span>
-                          <div class="plus-minus mt-2 d-inline-flex d-lg-none">
-                            <i class="sub" data-feather="minus"></i>
-                            <input type="number" value="1" min="1" max="10" />
-                            <i class="add" data-feather="plus"></i>
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-
-                    <td class="price d-none d-sm-table-cell">116000تومان</td>
-                    <td class="d-none d-lg-table-cell">
-                      <div class="plus-minus">
-                        <i class="sub" data-feather="minus"></i>
-                        <input type="number" value="1" min="1" max="10" />
-                        <i class="add" data-feather="plus"></i>
-                      </div>
-                    </td>
-                    <td class="total d-none d-xl-table-cell">116000تومان</td>
-                  </tr>
-
-                  <tr>
-                    <td>
-                      <div class="product-detail">
-                        <img class="pr-img" src="{%static '/yolo/'%}assets/images/fashion/product/front/10.jpg" alt="image" />
-                        <div class="details">
-                          <h4 class="title-color font-default2"><a href="/product">کوسن نقشه جهان</a></h4>
-                          <span class="sold-by">دسته بندی: <span>دکوراسیون</span> </span>
-                          <span class="size gap-2 d-flex">اندازه: <span>Sm</span> </span>
-                          <span class="size gap-2 d-flex d-sm-none">قیمت: <span>90000 تومان</span> </span>
-                          <div class="plus-minus mt-2 d-inline-flex d-lg-none">
-                            <i class="sub" data-feather="minus"></i>
-                            <input type="number" value="1" min="1" max="10" />
-                            <i class="add" data-feather="plus"></i>
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="price d-none d-sm-table-cell">90000تومان</td>
-                    <td class="d-none d-lg-table-cell">
-                      <div class="plus-minus">
-                        <i class="sub" data-feather="minus"></i>
-                        <input type="number" value="1" min="1" max="10" />
-                        <i class="add" data-feather="plus"></i>
-                      </div>
-                    </td>
-                    <td class="total d-none d-xl-table-cell">90000 تومان</td>
-                  </tr>
                 </tbody>
               </table>
             </div>
@@ -154,16 +96,16 @@
             <div class="cart-wrap grand-total-wrap">
               <div>
                 <div class="order-summery-box">
-                  <h5 class="cart-title">جزئیات قیمت (3 مورد)</h5>
+                  <h5 class="cart-title">جزئیات قیمت ({{num}} مورد)</h5>
                   <ul class="order-summery">
                     <li>
                       <span>مبلغ کل</span>
-                      <span>220000 تومان</span>
+                      <span>{{to}} تومان</span>
                     </li>
 
                     <li>
                       <span>سود شما از این خرید</span>
-                      <span class="theme-color">-20000 تومان</span>
+                      <span class="theme-color">-{{ben}} تومان</span>
                     </li>
 
                     <li>
@@ -173,12 +115,12 @@
 
                     <li>
                       <span>هزینه ارسال</span>
-                      <span>15000 تومان</span>
+                      <span>20000 تومان</span>
                     </li>
 
                     <li class="pb-0">
                       <span>قابل پرداخت</span>
-                      <span>215000 تومان</span>
+                      <span>{{sm}} تومان</span>
                     </li>
                   </ul>
                   <div class="row g-3 mt-2">
