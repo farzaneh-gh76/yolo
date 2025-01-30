@@ -51,6 +51,7 @@ urlpatterns = [
     path('addcart/<pid>', addcart),
     path('addwish/<pid>', addwish),
     path('deletecart/<itmid>', deletecart),
+    path('deletewish/<itmid>', deletewish),
     path('pluscart/<itmid>', pluscart),
     path('minuscart/<itmid>', minuscart),
     

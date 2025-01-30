@@ -142,16 +142,8 @@
 
       <!-- Menu Right Start  -->
       <div class="menu-right">
-        <div class="select-menu">
-          
-          <div class="dropdown select-dropdown" id="translate">
-            <button id="languageSelected"><span>زبان</span> <i data-feather="chevron-down"></i></button>
-            <ul class="onhover-show-div">
-              <li class="lang">فارسی</li>
-              <li class="lang">انگلیسی</li>
-              <li class="lang">عربی</li>                
-            </ul>
-          </div>
+        <div>
+          &nbsp;
         </div>
 
 
@@ -178,25 +170,28 @@
             </div>
           </li>
 
+          
           <li>
             <div class="dropdown whislist-dropdown">
-              <a href="javascript:void(0)"><i data-feather="heart"></i> <span class="notification-label">0</span></a>
-              <div class="onhover-show-div">
-                <a href="/wishlist"> <img src="{%static '/yolo/'%}assets/icons/svg/box.svg" class="img-fluid" alt="box" /> </a>
-                <div class="content">
-                  <a href="/wishlist">
-                    <h6>فهرست علاقه مندی شما خالی است!!</h6>
-                    <p>بیشتر کاوش کنید و موارد را فهرست کنید.</p>
-                  </a>
-                </div>
-              </div>
+              <a href="/wishlist"><i data-feather="heart"></i>
+                {%if user.is_authenticated%}                
+                <span class="notification-label">{{w}}</span>
+                {%endif%}
+              </a>
+              
             </div>
           </li>
+          
 
           <!-- Cart Menu Start -->
           <li>
             <div class="dropdown shopingbag">
-              <a href="javascript:void(0)" class="cart-button"><i data-feather="shopping-bag"></i> <span class="notification-label">3</span></a>
+              <a href="/cart" class="cart-button"><i data-feather="shopping-bag"></i> 
+                {%if user.is_authenticated%} 
+                <span class="notification-label">{{can}}</span>
+                {%endif%}
+              </a>
+              {%if user.is_authenticated%} 
               <a href="javascript:void(0)" class="overlay-cart overlay-common"></a>
               <div class="onhover-cart-dropdown">
                 <div class="onhover-show-div">
@@ -209,52 +204,20 @@
 
                   <div class="card-wrap custom-scroll">
                     <!-- Cart Item Start -->
+                     {%for itm in ca.items.all%}
                     <div class="cart-card media">
-                      <a href="product.html"> <img src="{%static '/yolo/'%}assets/images/fashion/product/front/8.jpg" class="img-fluid" alt="product" /> </a>
+                      <a href="/product/{{itm.product.id}}" > <img src="{{itm.product.img.url}}"  class="img-fluid" alt="product" />
                       <div class="media-body">
-                        <a href="product.html"> <h6>عروسک مستربین</h6></a>
-                        <span>120000 تومان</span>
-                        <div class="plus-minus">
-                          <i class="sub" data-feather="minus"></i>
-                          <input type="number" value="1" min="1" max="10" />
-                          <i class="add" data-feather="plus"></i>
-                        </div>
+                        <a href="/product/{{itm.product.id}}"> <h6>{{itm.product.title}} </h6></a>
+                        <span>{{itm.product.curprice}} تومان</span>
+                        
                       </div>
-                      <button class="remove-cart"><i data-feather="x"></i></button>
+                      
                     </div>
+                    {%endfor%}
                     <!-- Cart Item End -->
 
-                    <!-- Cart Item Start -->
-                    <div class="cart-card media">
-                      <a href="product.html"> <img src="{%static '/yolo/'%}assets/images/fashion/product/front/9.jpg" class="img-fluid" alt="product" /> </a>
-                      <div class="media-body">
-                        <a href="product.html"> <h6>ماگ سالیوان</h6></a>
-                        <span>116000 تومان   </span>
-                        <div class="plus-minus">
-                          <i class="sub" data-feather="minus"></i>
-                          <input type="number" value="1" min="1" max="10" />
-                          <i class="add" data-feather="plus"></i>
-                        </div>
-                      </div>
-                      <button class="remove-cart"><i data-feather="x"></i></button>
-                    </div>
-                    <!-- Cart Item End -->
-
-                    <!-- Cart Item Start -->
-                    <div class="cart-card media">
-                      <a href="product.html"> <img src="{%static '/yolo/'%}assets/images/fashion/product/front/10.jpg" class="img-fluid" alt="product" /> </a>
-                      <div class="media-body">
-                        <a href="product.html"> <h6>کوسن نقشه جهان</h6></a>
-                        <span>90000 تومان</span>
-                        <div class="plus-minus">
-                          <i class="sub" data-feather="minus"></i>
-                          <input type="number" value="2" min="1" max="10" />
-                          <i class="add" data-feather="plus"></i>
-                        </div>
-                      </div>
-                      <button class="remove-cart"><i data-feather="x"></i></button>
-                    </div>
-                    <!-- Cart Item End -->
+                    
                   </div>
                   <div class="dropdown-footer">                
                     <div class="btn-group block-group">
@@ -263,6 +226,8 @@
                   </div>
                 </div>
               </div>
+              {%endif%}
+
             </div>
           </li>
           <!-- Cart Menu End -->
@@ -428,21 +393,15 @@
 
                     <!-- Option -->
                     <ul class="option-wrap">
-                      <li data-bs-toggle="tooltip" data-bs-placement="top" title="لیست علاقه مندی">
-                        <a href="javascript:void(0)" class="wishlist-btn">
+                      <li  title="لیست علاقه مندی">
+                        <a href="/addwish/{{itm.id}}" class="wishlist-btn">
                           <i data-feather="heart"></i>
                         </a>
                       </li>
-                      <li data-bs-toggle="tooltip" data-bs-placement="top" title="مقایسه کردن">
-                        <a href="/compare"><i data-feather="repeat"></i></a>
-                      </li>
-                      <li data-bs-toggle="tooltip" data-bs-placement="top" title="مشاهده فوری">
-                        <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#viewModal">
-                          <i data-feather="eye"></i>
-                        </a>
-                      </li>
-                      <li data-bs-toggle="tooltip" data-bs-placement="top" title="سبد خرید">
-                        <a href="javascript:void(0)" class="addtocart-btn"> <i data-feather="shopping-bag"></i> </a>
+                      
+                      
+                      <li  title="سبد خرید">
+                        <a href="/addcart/{{itm.id}}" class="addtocart-btn"> <i data-feather="shopping-bag"></i> </a>
                       </li>
                     </ul>
                   </div>
@@ -450,7 +409,7 @@
                   
 
                   <a href="/product/{{itm.id}}" class="content-box">
-                    <p class="sosmall">{{itm.category}}</p>
+                    <p class="small">{{itm.category}}</p>
                     <h5>  {{itm.title}}</h5>
 
                     <div class="price-box">
@@ -459,23 +418,7 @@
                     </div>
                   </a>
                   <div> <br></div>
-                  <ul class="rating p-0 mb">
-                    <li>
-                      <i class="fill" data-feather="star"></i>
-                    </li>
-                    <li>
-                      <i class="fill" data-feather="star"></i>
-                    </li>
-                    <li>
-                      <i class="fill" data-feather="star"></i>
-                    </li>
-                    <li>
-                      <i class="fill" data-feather="star"></i>
-                    </li>
-                    <li>
-                      <i class="fill" data-feather="star-half"></i>
-                    </li>
-                  </ul>
+                  
                 </div>
               </div>
               {%endfor%}
@@ -529,15 +472,15 @@
       <section>
         <div class="container-lg">
           <div class="title-box">
-            <h2 class="unique-heading">محبوب ترین ها</h2>
+            <h2 class="unique-heading">تخفیفات ویژه</h2>
             <span class="title-divider1"><span class="squre"></span><span class="squre"></span></span>
-            <p>آنچه مشتریان ما بیشتر پسندیده اند...</p>
+            <p>خریدی آسان و به صرفه...</p>
           </div>
 
           <div class="swiper product-slider ratio_asos">
             <div class="swiper-wrapper">
 
-              {%for itm in p%}
+              {%for itm in pw%}
               <div class="swiper-slide">
                 <div class="product-card4 option-bottom">
                   <div class="img-box">
@@ -547,21 +490,15 @@
 
                     <!-- Option -->
                     <ul class="option-wrap">
-                      <li data-bs-toggle="tooltip" data-bs-placement="top" title="لیست علاقه مندی">
-                        <a href="javascript:void(0)" class="wishlist-btn">
+                      <li  title="لیست علاقه مندی">
+                        <a href="/addwish/{{itm.id}}" class="wishlist-btn">
                           <i data-feather="heart"></i>
                         </a>
                       </li>
-                      <li data-bs-toggle="tooltip" data-bs-placement="top" title="مقایسه کردن">
-                        <a href="/compare"><i data-feather="repeat"></i></a>
-                      </li>
-                      <li data-bs-toggle="tooltip" data-bs-placement="top" title="مشاهده فوری">
-                        <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#viewModal">
-                          <i data-feather="eye"></i>
-                        </a>
-                      </li>
-                      <li data-bs-toggle="tooltip" data-bs-placement="top" title="سبد خرید">
-                        <a href="javascript:void(0)" class="addtocart-btn"> <i data-feather="shopping-bag"></i> </a>
+                      
+                      
+                      <li title="سبد خرید">
+                        <a href="/addcart/{{itm.id}}" class="addtocart-btn"> <i data-feather="shopping-bag"></i> </a>
                       </li>
                     </ul>
                   </div>
@@ -569,7 +506,7 @@
                   
 
                   <a href="/product/{{itm.id}}" class="content-box">
-                    <p class="sosmall">{{itm.category}}</p>
+                    <p class="small">{{itm.category}}</p>
                     <h5>  {{itm.title}}</h5>
 
                     <div class="price-box">
@@ -578,23 +515,7 @@
                     </div>
                   </a>
                   <div> <br></div>
-                  <ul class="rating p-0 mb">
-                    <li>
-                      <i class="fill" data-feather="star"></i>
-                    </li>
-                    <li>
-                      <i class="fill" data-feather="star"></i>
-                    </li>
-                    <li>
-                      <i class="fill" data-feather="star"></i>
-                    </li>
-                    <li>
-                      <i class="fill" data-feather="star"></i>
-                    </li>
-                    <li>
-                      <i class="fill" data-feather="star-half"></i>
-                    </li>
-                  </ul>
+                  
                 </div>
               </div>
               {%endfor%}
@@ -875,137 +796,6 @@
   </footer>
   <!-- Mobile Menu Footer End -->
 
-    <!-- Notification Start -->
-    <div class="notification-wrap addToCart">
-      <div class="notification">
-        <img src="{%static '/yolo/'%}assets/images/fashion/product/front/1.jpg" alt="product" />
-        <div>
-          <h5>به سبد خرید اضافه شد</h5>
-        </div>
-      </div>
-    </div>
-    <!-- Notification End -->
-
-    <!-- Notification Start -->
-    <div class="notification-wrap addToWishlist">
-      <div class="notification">
-        <img src="{%static '/yolo/'%}assets/images/fashion/product/front/1.jpg" alt="product" />
-        <div>
-          <h5>به لیست علاقه مندی ها اضافه شد</h5>
-        </div>
-      </div>
-    </div>
-    <!-- Notification End -->
-
-    <!-- View Product Modal Start -->
-    <div class="modal view-product fade" id="viewModal" tabindex="-1" aria-labelledby="viewModal" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-body">
-            <span class="close-modal d-none d-md-block" data-bs-toggle="modal" data-bs-target="#viewModal"><i data-feather="x"></i></span>
-            <div class="row gy-4 g-md-0">
-              <div class="col-md-7">
-                <div class="slider-box">
-                  <span class="close-modal d-md-none" data-bs-toggle="modal" data-bs-target="#viewModal"><i data-feather="x"></i></span>
-                  <div class="row g-2">
-                    <div class="col-2">
-                      <div class="thumbnail-box">
-                        <div class="swiper thumbnail-img-box thumbnailSlider">
-                          <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                              <img src="{%static '/yolo/'%}assets/images/fashion/product/front/7.jpg" alt="img" />
-                            </div>
-                            <div class="swiper-slide">
-                              <img src="{%static '/yolo/'%}assets/images/fashion/product/front/7-1.jpg" alt="img" />
-                            </div>
-                            <div class="swiper-slide">
-                              <img src="{%static '/yolo/'%}assets/images/fashion/product/front/7-2.jpg" alt="img" />
-                            </div>
-                            <div class="swiper-slide">
-                              <img src="{%static '/yolo/'%}assets/images/fashion/product/front/7-3.jpg" alt="img" />
-                            </div>
-                            <div class="swiper-slide">
-                              <img src="{%static '/yolo/'%}assets/images/fashion/product/front/7-1.jpg" alt="img" />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-10 ratio_square">
-                      <div class="swiper mainslider">
-                        <div class="swiper-wrapper">
-                          <div class="swiper-slide">
-                            <img class="bg-img" src="{%static '/yolo/'%}assets/images/fashion/product/front/7.jpg" alt="img" />
-                          </div>
-                          <div class="swiper-slide">
-                            <img class="bg-img" src="{%static '/yolo/'%}assets/images/fashion/product/front/7-1.jpg" alt="img" />
-                          </div>
-                          <div class="swiper-slide">
-                            <img class="bg-img" src="{%static '/yolo/'%}assets/images/fashion/product/front/7-2.jpg" alt="img" />
-                          </div>
-                          <div class="swiper-slide">
-                            <img class="bg-img" src="{%static '/yolo/'%}assets/images/fashion/product/front/7-3.jpg" alt="img" />
-                          </div>
-                          <div class="swiper-slide">
-                            <img class="bg-img" src="{%static '/yolo/'%}assets/images/fashion/product/front/7.jpg" alt="img" />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-5">
-                <div class="product-detail-box">
-                  <div class="product-option">
-                    <h4>ست سرویس بهداشتی</h4>
-                    <div class="گزینه قیمت">
-                      <h5>قیمت</h5>
-                      <span> 1950000 تومان </span> <del>2300000 تومان</del>
-                    </div>
-                    <div class="option">
-                      <h5>شرح محصول</h5>
-                      <p class="content-color">ست کامل سرویس بهداشتی از پلاستیک فشرده و مقاوم در برابر پوسیدگی</p>
-                    </div>
-                    <div class="option">
-                      <h5>رنگ نام تجاری شما:</h5>
-                      <ul class="color-list">
-                        <li class="bg-theme-p-1 active"></li>
-                        <li class="bg-theme-p-2"></li>
-                        <li class="bg-theme-p-3"></li>
-                      </ul>
-                    </div>
-                    <div class="option">
-                      <h5>اندازه:</h5>
-                      <ul class="size-list">
-                        <li class="active">S</li>
-                        <li>M</li>
-                        <li>L</li>
-                        <li>XL</li>
-                      </ul>
-                    </div>
-                    <div class="option">
-                      <h5>تعداد:</h5>
-                      <div class="plus-minus">
-                        <i class="sub" data-feather="minus"></i>
-                        <input type="number" value="1" min="1" max="10" />
-                        <i class="add" data-feather="plus"></i>
-                      </div>
-                    </div>
-
-                    <div class="btn-group">
-                      <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#viewModal" class="btn-solid btn-sm addtocart-btn">افزودن به سبد خرید </a>
-                      <a href="product.html" class="btn-outline btn-sm">مشاهده کامل</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- View Product Modal End -->
     
 
     <!-- Tap To Top Button Start -->

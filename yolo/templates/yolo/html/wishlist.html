@@ -35,64 +35,34 @@
       <div class="row g-3 g-3 g-xxl-4 ratio_asos row-cols-2 row-cols-sm-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6">
         
         
-        
+        {%for itm in ws%}
         <div class="col">
           <div class="product-card product-wishlist">
             <div class="img-box">
-              <a href="/product/{{itm.id}} " class="primary-img"><img class="img-fluid bg-img" src="{%static '/yolo/'%}assets/images/fashion/product/front/8.jpg" alt="product" /> </a>
-              <!-- Rating -->
-              <div class="rating">
-                <span>4.5 <i data-feather="star"></i> </span>
-                <span>136</span>
-              </div>
+              <a href="/product/{{itm.product.id}} " class="primary-img"><img class="img-fluid bg-img" src="{{itm.product.img.url}}" alt="product" /> </a>
+              
               <!-- Delete Button -->
-              <button class="delete-button"><i data-feather="x"></i></button>
+               <a href="/deletewish/{{itm.product.id}}">
+                <button   class="delete-button"><i data-feather="x"></i></button>
+              </a>
+              
             </div>
             <div class="content-wrap">
               <!-- Content Box -->
               <div class="content-box">
-                <a href="/product/{{itm.id}}">
-                  <p>هدیه</p>
-                  <h5>عروسک مستربین</h5>
-                  <span>120000 تومان</span>
+                <a href="/product/{{itm.product.id}}">
+                  <p>{{itm.product.category}}</p>
+                  <h5>{{itm.product.title}} </h5>
+                  <span>{{itm.product.curprice}} تومان</span>
                 </a>
               </div>
               <div class="mov-to-bag">
-                <a href="javascript:void(0)" class="btn btn-outline btn-sm addtocart-btn">افزودن به سبد خرید <i class="arrow"></i> </a>
+                <a href="/addcart/{{itm.product.id}}"  class="btn btn-outline btn-sm addtocart-btn">افزودن به سبد خرید <i class="arrow"></i> </a>
               </div>
             </div>
           </div>
         </div>
-
-        <div class="col">
-          <div class="product-card product-wishlist">
-            <div class="img-box">
-              <a href="/product/{{itm.id}} " class="primary-img"><img class="img-fluid bg-img" src="{%static '/yolo/'%}assets/images/fashion/product/front/9.jpg" alt="product" /> </a>
-              <!-- Rating -->
-              <div class="rating">
-                <span>3.5 <i data-feather="star"></i> </span>
-                <span>126</span>
-              </div> 
-              <!-- Delete Button -->
-              <button class="delete-button"><i data-feather="x"></i></button>
-            </div>
-            <div class="content-wrap">
-              <!-- Content Box -->
-              <div class="content-box">
-                <a href="/product/{{itm.id}}">
-                  <p>هدیه</p>
-                  <h5>ماگ سالیوان</h5>
-                  <span>116000 تومان</span>
-                </a>
-              </div>
-              <div class="mov-to-bag">
-                <a href="javascript:void(0)" class="btn btn-outline btn-sm addtocart-btn">افزودن به سبد خرید <i class="arrow"></i> </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        
+        {%endfor%}
       </div>
     </div>
   </section>
