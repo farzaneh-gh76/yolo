@@ -32,16 +32,15 @@ urlpatterns = [
     path('comingsoon/', comingsoon),
     path('contact/', contact),
     path('faqs/', faqs),
-    path('forgot/', forgot),
+    
     path('login/', login),
     path('logout/', logout),
     path('onsale/', onsale),
     path('ordersuccess/', ordersuccess),
-    path('otp/', otp),
-    path('payment/', payment),
+    
     path('product/<adad>', product),
     path('register/', register),
-    path('resetpassword/', resetpassword),
+    
     path('search/', search),
     path('shop/', shop),
     path('success/', success),
@@ -54,5 +53,5 @@ urlpatterns = [
     path('deletewish/<itmid>', deletewish),
     path('pluscart/<itmid>', pluscart),
     path('minuscart/<itmid>', minuscart),
-    
+    path('addaddress/<aid>', addaddress),
 ]+static(settings.MEDIA_URL , document_root=settings.MEDIA_ROOT)

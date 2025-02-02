@@ -41,10 +41,43 @@
       <section class="checkout">
         <div class="container-lg">
           <div class="row g-3 g-sm-4 cart">
+
             <div class="col-md-7 col-lg-8 col-xl-9">
               <div class="address-wrap">
                 <div class="title-box2">
-                  <h2 class="heading-2">لطفا آدرس تحویل را انتخاب کنید:</h2>
+                  <h2 class="heading-2"> آدرس تحویل :</h2>
+                  
+                </div>
+
+                <div class="title-box2">
+                  
+                  <h5>ما سفارش شما را به آدرس زیر ارسال می کنیم. در صورت تمایل آدرس جدیدی انتخاب کنید.</h5>
+                  
+
+                </div>
+
+                <div class="title-box2">
+                  
+
+                  {%if odrs%}
+                  <h6  style="color: rgb(34, 91, 197);">تحویل به {{odrs.name}}، در  {{odrs.address}}, کد پستی {{odrs.zip}}</h6>
+                  
+                  
+
+                  
+                  
+                  {%else%}
+
+                  <h6 style="color: rgb(184, 16, 133);">هیچ آدرسی انتخاب نشده</h6>
+
+                {%endif%}
+
+
+                </div>
+
+                <div class="title-box2">
+                  <h2 class="heading-2"> تغییر آدرس :</h2>
+                  
                 </div>
 
                 <div class="row g-3 g-md-4">
@@ -55,69 +88,53 @@
                     </div>
                   </div>
 
+                {%for itm in u%}
+
                   <div class="col-12 col-xl-6">
                     <div class="address-box checked">
-                      <div class="radio-box">
+                      
                         <div>
-                          <input class="radio-input" type="radio" checked id="radio1" name="radio1" />
-                          <label class="radio-label" for="radio1">فرزانه قندهاری</label>
-                        </div>
-                        <span class="badges badges-pill badges-theme">خونه</span>
-                        <div class="option-wrap">
-                          <span class="edit" data-bs-toggle="modal" data-bs-target="#edditAddress"><i data-feather="edit"></i></span>
-                          <span class="delet ms-0" data-bs-toggle="modal" data-bs-target="#conformation"><i data-feather="trash"></i></span>
-                        </div>
-                      </div>
-                      <div class="address-detail">
-                        <p class="content-color font-default">اصفهان، بلوار انقلاب، کوی نرگس، پلاک13 </p>
-                        <p class="content-color font-default">ایران، اصفهان</p>
+                          
+                          <label class="radio-label" for="radio1">{{itm.name}}</label>
+                          
 
-                        <span class="content-color font-default mt-1">کدپستی: <span class="title-color font-default fw-500">1234567890</span></span>
-                        <span class="content-color font-default">تلفن همراه: <span class="title-color font-default fw-500">0913-1234567</span></span>                       
-                        <span class="content-color font-default mt-1">نوع پرداخت: <span class="title-color font-default fw-500">اینترنتی</span></span>
+                        </div>
+                        
+                       
+                      
+                      <div class="address-detail">
+                        <p class="content-color font-default"> استان: {{itm.city}}</p>
+                        <p class="content-color font-default">{{itm.address}} </p>
+                        <br/>                        
+
+                        <span class="content-color font-default mt-1">کدپستی: <span class="title-color font-default fw-500">{{itm.zip}}</span></span>
+                        <span class="content-color font-default">تلفن همراه: <span class="title-color font-default fw-500">{{itm.call}}</span></span>                       
+                        
                       </div>
+
+                      <br/>
+
+                      <a  href="/addaddress/{{itm.id}}"  > 
+                        <button class="post-button btn btn-solid btn-sm mb-line" >
+                          انتخاب آدرس 
+                           <i class="arrow"></i></button></a>
+
                     </div>
                   </div>
+                {%endfor%}
 
-                
-                  <div class="col-12 col-xl-6">
-                    <div class="address-box">
-                      <div class="radio-box">
-                        <div>
-                          <input class="radio-input" type="radio" id="radio2" name="radio1" />
-                          <label class="radio-label" for="radio2">مهرانه داوری</label>
-                        </div>
-                        <span class="badges badges-pill badges-theme">مدرسه محل کار</span>
-                        <div class="option-wrap">
-                          <span class="edit" data-bs-toggle="modal" data-bs-target="#edditAddress"><i data-feather="edit"></i></span>
-                          <span class="delet ms-0" data-bs-toggle="modal" data-bs-target="#conformation"><i data-feather="trash"></i></span>
-                        </div>
-                      </div>
-                      <div class="address-detail">
-                        <p class="content-color font-default">دولت آباد،خیابان بسیج، کوچه ترنم، مدرسه شهید فهمیده</p>
-                        <p class="content-color font-default">ایران، اصفهان</p>
-
-                        <span class="content-color font-default mt-1">کدپستی: <span class="title-color font-default fw-500">1234567890</span></span>
-                        <span class="content-color font-default">تلفن همراه: <span class="title-color font-default fw-500"> 0913-1234567</span></span>                        
-                        <span class="content-color font-default mt-1">نوع پرداخت: <span class="title-color font-default fw-500">اینترنتی</span></span>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
+
+
+              
             </div>
+            
+            
 
             <div class="col-md-5 col-lg-4 col-xl-3">
               <div class="summery-wrap">
-                <div class="coupon-box">
-                  <h5 class="cart-title">کد تخفیف</h5>
-                  <div class="text-wrap">
-                    <input required type="email" class="form-control" placeholder="کد را وارد کنید" />
-                    <a href="javascript:void(0)" class="btn btn-outline btn-sm">اعمال</a>
-                  </div>
-
-                  <p class="content-color font-md mb-0">در صورتی که در خریدهای پیشین کد تخفیف دریافت کرده اید، آن را در کادر بالا وارد کنید.</p>
-                </div>
+                
                 <div class="cart-wrap grand-total-wrap">
                   <div>
                     <div class="order-summery-box">
@@ -150,7 +167,7 @@
                       </ul>
                       <div class="row g-3 mt-2">
                         <div class="col-6 col-md-12">
-                          <a href="/address" class="btn-solid checkout-btn">تسویه حساب <i class="arrow"></i></a>
+                          <a href="#" class="btn-solid checkout-btn">تسویه حساب <i class="arrow"></i></a>
                         </div>
                         <div class="col-6 col-md-12">
                           <a href="/shop" class="btn-outline w-100 justify-content-center checkout-btn"> بازگشت به فروشگاه </a>
@@ -192,19 +209,8 @@
                   </div>
                 </div>
 
-                <div class="col-6">
-                  <div class="input-box">
-                    <label for="email">ایمیل (اختیاری):</label>
-                    <input class="form-control" type="email" required name="email" id="email" />
-                  </div>
-                </div>
 
-                <div class="col-6">
-                  <div class="input-box">
-                    <label for="mobile">شماره تماس:</label>
-                    <input class="form-control" maxlength="11" type="number" required name="mobile" id="mobile" />
-                  </div>
-                </div>
+                
 
                 <div class="col-12">
                   <div class="input-box">
@@ -260,7 +266,13 @@
                       
                     </select>
                   </div>
-                </div>              
+                </div>      
+                <div class="col-6">
+                  <div class="input-box">
+                    <label for="mobile">شماره تماس:</label>
+                    <input class="form-control" maxlength="11" type="number" required name="mobile" id="mobile" />
+                  </div>
+                </div>        
                 <div class="modal-footer">
                   <div class="btn-box">
                     <button type="button" class="btn btn-outline rounded-pill" data-bs-dismiss="modal" aria-label="Close">بستن</button>
@@ -276,117 +288,5 @@
     </div>
     <!-- Add New Address Modal End -->
 
-    <!-- Edit Address Modal Start -->
-    <div class="modal fade addnew-address" id="edditAddress" tabindex="-1" aria-labelledby="edditAddressLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="edditAddressLabel">ویرایش آدرس</h5>
-            <span class="close-modal" data-bs-dismiss="modal"><i data-feather="x"></i></span>
-          </div>
-
-          <div class="modal-body full-grid-mobile">
-            <form action="javascript:void(0)" class="custom-form form-pill">
-              <div class="row g-3 g-md-4">
-                <div class="col-12">
-                  <div class="input-box">
-                    <label for="name">نام و نام خانوادگی تحویل گیرنده:</label>
-                    <input class="form-control" type="text" required name="name" id="name" />
-                  </div>
-                </div>
-
-                <div class="col-6">
-                  <div class="input-box">
-                    <label for="email">ایمیل (اختیاری):</label>
-                    <input class="form-control" type="email" required name="email" id="email" />
-                  </div>
-                </div>
-
-                <div class="col-6">
-                  <div class="input-box">
-                    <label for="mobile">شماره تماس:</label>
-                    <input class="form-control" maxlength="9" type="number" required name="mobile" maxlength="10" id="mobile" />
-                  </div>
-                </div>
-
-                <div class="col-12">
-                  <div class="input-box">
-                    <label for="address1">نشانی(شهر،خیابان،کوچه،پلاک،واحد):</label>
-                    <input class="form-control" type="text" required name="address1" id="address1" />
-                  </div>
-                </div>
-
-                <div class="col-sm-4">
-                  <div class="input-box">
-                    <label for="zip">کد پستی:</label>
-                    <input class="form-control" maxlength="5" type="number" required name="zip" id="zip" />
-                  </div>
-                </div>
-
-                <div class="col-6 col-sm-4">
-                  <div class="input-box">
-                    <label for="country">استان:</label>
-                    <select class="form-select form-control" id="country">
-                      <option selected disabled value="">انتخاب کنید...</option>
-                      <option>تهران</option>
-                      <option>اصفهان</option>
-                      <option>یزد</option>
-                      <option>شیراز</option>
-                      <option>خوزستان</option>
-                      <option>خراسان رضوی</option>
-                      <option>آذربایجان غربی</option>
-                      <option>کردستان</option>
-                      <option>قم</option>
-                      <option>مازندران</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="col-6 col-sm-4">
-                  <div class="input-box">
-                    <label for="city">نوع پرداخت:</label>
-                    <select class="form-select form-control" id="city">
-                      <option selected disabled value="">انتخاب کنید...</option>
-                      <option>نقدی هنگام تحویل</option>
-                      <option>اینترنتی</option>                      
-                    </select>
-                  </div>
-                </div>
-
-                
-              </div>
-            </form>
-          </div>
-
-          <div class="modal-footer">
-            <div class="btn-box">
-              <button type="button" class="btn btn-outline rounded-pill" data-bs-dismiss="modal" aria-label="Close">بستن</button>
-              <button type="button" class="btn btn-solid line-none rounded-pill">ذخیره تغییرات <i class="arrow"></i></button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Edit Address Modal End -->
-
-    <!-- Action Conformation Start -->
-    <div class="modal fade action-conform" id="conformation" tabindex="-1" aria-labelledby="conformationLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="conformationLabel">آیا مطمئن هستید؟</h5>
-            <span class="close-modal" data-bs-dismiss="modal"><i data-feather="x"></i></span>
-          </div>
-          <div class="modal-body">
-            <p class="font-md">در صورت حذف، امکان بازگردانی  وجود ندارد و در صورت نیاز باید دوباره آن را ایجاد کنید.</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-outline btn-sm" data-bs-dismiss="modal">پشیمون شدم</button>
-            <button type="button" class="btn btn-solid btn-sm line-none" data-bs-dismiss="modal">حذف کن<i class="arrow"></i></button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Action Conformation End -->
 
 {%endblock%}

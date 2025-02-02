@@ -140,16 +140,7 @@ class message(models.Model):
         d=str(self.date)
         return d
     
-class user_address(models.Model):
-    name=models.CharField(max_length=100, verbose_name="نام تحویل گیرنده")
-    call=models.CharField(max_length=20, verbose_name="شماره تماس")
-    email=models.EmailField(help_text="ایمیل معتبر وارد کنید" , null=True)
-    city=models.CharField(max_length=20, verbose_name=" استان")
-    address=models.CharField(max_length=500, verbose_name="آدرس")
-    zip=models.CharField(max_length=20, verbose_name=" کدپستی")
-    #username=models.ForeignKey(user_account , on_delete=models.CASCADE, related_name="pp")
-    def __str__(self) -> str:
-        return self.name
+
     
 class banner(models.Model):
     img1=models.ImageField(upload_to="photo" , verbose_name="بنر 1" ,null=True)
@@ -173,6 +164,17 @@ roleitems=(("normal","عادی"),("vip","ویژه"))
 class CustomUser(AbstractUser):
     role=models.CharField(max_length=20, choices=roleitems, default="normal")
 
+class user_address(models.Model):
+    name=models.CharField(max_length=100, verbose_name="نام تحویل گیرنده")
+    call=models.CharField(max_length=20, verbose_name="شماره تماس")
+    user=models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,null=True)    
+    city=models.CharField(max_length=20, verbose_name=" استان")
+    address=models.CharField(max_length=500, verbose_name="آدرس")
+    zip=models.CharField(max_length=20, verbose_name=" کدپستی")
+    #username=models.ForeignKey(user_account , on_delete=models.CASCADE, related_name="pp")
+    def __str__(self) -> str:
+        return (str(self.user)+str(self.id))
+    
 
 class order(models.Model):
     user=models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -180,6 +182,7 @@ class order(models.Model):
     status=models.CharField(max_length=20,choices=status_choices,default="cart")
     tracking_code=models.UUIDField(default=uuid.uuid4,editable=False,unique=True)
     created_at=models.DateTimeField(auto_now_add=True)
+    address=models.ForeignKey(user_address,on_delete=models.CASCADE,related_name="adrs", null=True)
     def __str__(self):
         return f"order: {self.tracking_code} | {self.status}"
     
@@ -191,4 +194,6 @@ class orderitem(models.Model):
 class wish(models.Model):
     user=models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     product=models.ForeignKey(shop_prd,on_delete=models.CASCADE)
+
+
     
